@@ -37,11 +37,10 @@
   }
   .wrap{max-width:760px; margin:0 auto; padding:0 20px 96px}
   header.top{padding:52px 0 8px}
-  .kicker{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 10px}
   h1{font-size:33px; line-height:1.12; margin:0 0 12px; letter-spacing:-.02em}
   .lede{font-size:18px; color:var(--muted); margin:0 0 8px; max-width:60ch}
   h2{font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700; margin:48px 0 14px}
-  .subh{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:700; margin:24px 0 8px}
+  .subh{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:22px 0 8px}
   h3{font-size:20px; margin:0 0 6px; letter-spacing:-.01em}
   p{margin:0 0 14px}
   a{color:var(--accent-ink); text-decoration:none; border-bottom:1px solid rgba(123,46,168,.35)}
@@ -50,7 +49,6 @@
   .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
   .pad{padding:20px 22px}
 
-  /* intro meta chips */
   .chips{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px}
   .chip{font-size:13px; background:var(--surface-2); border:1px solid var(--line); color:var(--muted); padding:5px 11px; border-radius:999px}
   .chip b{color:var(--ink); font-weight:600}
@@ -66,9 +64,9 @@
   .note.light{border-left-color:var(--faint)}
   .note.light .t{color:var(--accent)}
   .note .t::before{font-weight:800; font-size:12px; line-height:1.5; opacity:.9}
-  .note.warn .t::before{content:"\25B2"}   /* triangle: caution */
-  .note.good .t::before{content:"\2713"}   /* check: pass */
-  .note.light .t::before{content:"\25C6"}  /* diamond: note */
+  .note.warn .t::before{content:"\25B2"}
+  .note.good .t::before{content:"\2713"}
+  .note.light .t::before{content:"\25C6"}
 
   /* weekly table */
   table{width:100%; border-collapse:collapse; font-size:15px; margin:6px 0 4px}
@@ -104,7 +102,6 @@
   .check{display:flex; gap:12px; align-items:flex-start; padding:11px 0}
   .check input{margin-top:3px; width:22px; height:22px; accent-color:var(--good); flex:0 0 auto}
   .check label{font-size:15.5px}
-  .check .why{display:block; color:var(--muted); font-size:13.5px}
 
   /* video */
   .vid{margin:14px 0 4px}
@@ -119,6 +116,15 @@
   figure.dia svg{width:100%; height:auto; display:block; color:var(--ink)}
   figcaption{font-size:13.5px; color:var(--muted); margin-top:10px}
 
+  /* reference collapsibles */
+  details.ref{margin:12px 0; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+  details.ref>summary{list-style:none; cursor:pointer; padding:16px 20px; font-weight:700; font-size:16px; color:var(--ink); display:flex; justify-content:space-between; align-items:center; gap:12px}
+  details.ref>summary::-webkit-details-marker{display:none}
+  details.ref>summary::after{content:"\25B8"; color:var(--faint); font-size:13px; transition:transform .2s ease}
+  details.ref[open]>summary::after{transform:rotate(90deg)}
+  details.ref .rbody{padding:6px 20px 20px; border-top:1px solid var(--line)}
+  details.ref .rbody .note{margin:14px 0}
+
   hr.sep{border:none; border-top:1px solid var(--line); margin:40px 0}
   .foot{margin-top:44px; font-size:13.5px; color:var(--faint)}
   .btnrow{margin:14px 0}
@@ -126,7 +132,6 @@
   button.reset:hover{border-color:var(--accent); color:var(--accent)}
   .saved{font-size:13px; color:var(--good); margin-left:10px; opacity:0; transition:opacity .2s}
   .saved.show{opacity:1}
-  ul.plain{padding-left:20px} ul.plain li{margin:6px 0}
   @media (max-width:480px){
     header.top{padding:36px 0 8px}
     h1{font-size:29px}
@@ -146,110 +151,26 @@
     <span class="chip"><b>~20 min</b></span>
     <span class="chip">4 phases</span>
   </div>
-  <p class="small" style="margin-top:14px">Each session: warm-up, your current phase, then a short strength finisher. Advance a phase only when you pass its test. Ticks save on this device.</p>
+  <p class="small" style="margin-top:14px">On a skill day, do your current phase below: warm-up, skill work, then strength, about 20 minutes. On a light day (Mon, Wed), do the light session. Advance a phase only when you pass its test. Ticks save on this device.</p>
 </header>
 
-<h2>Guardrails</h2>
-<div class="note warn">
-  <p class="t">Wrists: sharp or joint pain</p>
-  <p>Forearm ache is fine. Sharp pain, or pain in the joint, means stop. Go back to the warm-up and prep-only loading, and cut volume next session.</p>
-</div>
-<div class="note warn">
-  <p class="t">Neck or arms: tingling, or pressure in the neck</p>
-  <p>You should feel it in the hands and shoulders. Tingling down the arms or a compressed neck means come down.</p>
-</div>
-<div class="note warn">
-  <p class="t">Shoulders: pinch at the top of the reach</p>
-  <p>Do not force it. Reduce the range and do more shoulder mobility. It opens over weeks.</p>
-</div>
-<div class="note warn">
-  <p class="t">Head rush or dizziness</p>
-  <p>Come out of every inversion slowly. Sit and hydrate if light-headed.</p>
-</div>
-<div class="note warn">
-  <p class="t">Pinch in the lower back upside down</p>
-  <p>You are arching (the banana). Ribs down, glutes on, more hollow work.</p>
-</div>
-<div class="note warn">
-  <p class="t">Fear when tipping over</p>
-  <p>Never kick up freestanding until the cartwheel bail is automatic. That is the job of Phase 2.</p>
-</div>
-
 <h2>The week</h2>
-<p class="small" style="margin-top:-4px">Six short sessions, one rest day. Two light days spare the wrists; place them before your most physically demanding days.</p>
 <div class="card pad" style="padding-top:6px;padding-bottom:6px">
 <table>
-  <tr><th>Day</th><th>Focus</th><th>Session</th></tr>
-  <tr><td class="day">Mon</td><td><span class="tag lite">light</span></td><td>Mobility, core and shoulders. Minimal wrist load.</td></tr>
-  <tr><td class="day">Tue</td><td><span class="tag skill">skill</span></td><td>Full session.</td></tr>
-  <tr><td class="day">Wed</td><td><span class="tag lite">light</span></td><td>Mobility, core and shoulders. Minimal wrist load.</td></tr>
+  <tr><th>Day</th><th>Focus</th><th>Do</th></tr>
+  <tr><td class="day">Mon</td><td><span class="tag lite">light</span></td><td>Light session (below).</td></tr>
+  <tr><td class="day">Tue</td><td><span class="tag skill">skill</span></td><td>Your current phase.</td></tr>
+  <tr><td class="day">Wed</td><td><span class="tag lite">light</span></td><td>Light session (below).</td></tr>
   <tr><td class="day">Thu</td><td><span class="tag rest">rest</span></td><td>Off. Optional gentle wrist mobility.</td></tr>
-  <tr><td class="day">Fri</td><td><span class="tag skill">skill</span></td><td>Full session.</td></tr>
-  <tr><td class="day">Sat</td><td><span class="tag skill">skill</span></td><td>Full session.</td></tr>
-  <tr><td class="day">Sun</td><td><span class="tag skill">skill</span></td><td>Full session.</td></tr>
+  <tr><td class="day">Fri</td><td><span class="tag skill">skill</span></td><td>Your current phase.</td></tr>
+  <tr><td class="day">Sat</td><td><span class="tag skill">skill</span></td><td>Your current phase.</td></tr>
+  <tr><td class="day">Sun</td><td><span class="tag skill">skill</span></td><td>Your current phase.</td></tr>
 </table>
 </div>
-<p class="small">Light day: warm-up, hollow-body and shoulder work, but skip the phase's heaviest wrist-loaded item (wall holds, kick-ups, freestanding attempts).</p>
+<p class="small">Light days keep the wrists fresh for the days after. If you stall for weeks or your wrists flare, take a lighter week rather than pushing through.</p>
 
-<h2>Warm-up &middot; every session &middot; ~5 min</h2>
-<p class="small" style="margin-top:-4px">Do not load cold wrists.</p>
-<div class="card pad">
-  <ul class="moves">
-    <li><span class="mv">Forearm &amp; shoulder release</span> <span class="dose">30&ndash;60s</span><span class="cue">Free up the forearm flexors and shoulders.</span></li>
-    <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: palms-down rock forward, fingers-back rock, then side to side. Slow.</span></li>
-    <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly.</span></li>
-    <li><span class="mv">Shoulder circles or wall slides</span> <span class="dose">~45s</span><span class="cue">Move the overhead reach through full range.</span></li>
-    <li><span class="mv">Thread-the-needle or band pass-throughs</span> <span class="dose">~45s</span><span class="cue">Open the shoulders towards overhead. No pinching.</span></li>
-    <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span></li>
-    <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span></li>
-  </ul>
-</div>
-<div class="vid">
-  <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/mSZWSQSSEjE" title="Wrist prep routine" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-  <p class="vcap"><b>Wrist prep</b> &middot; FitnessFAQs. <a href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">Open on YouTube</a></p>
-</div>
-
-<h2>Alignment</h2>
-<p class="small" style="margin-top:-4px">The aim is to stack the big joints, wrists under shoulders under hips under ankles, so you balance with little effort instead of muscling it. The common fault is arching the lower back (the banana), which pushes the hips out of the stack and loads the spine. What each part does, from the ground up:</p>
-<div class="card pad">
-  <ul class="moves">
-    <li><span class="mv">Hands</span><span class="cue">Fingers spread, gripping the floor, weight through the fingertips.</span></li>
-    <li><span class="mv">Shoulders</span><span class="cue">Push tall and reach fully overhead, ears between the arms. This is what stacks you.</span></li>
-    <li><span class="mv">Ribs</span><span class="cue">Do not let your ribcage pop up and forwards. Gently brace your stomach so the front of your body stays flat. Same feeling as the hollow-body hold.</span></li>
-    <li><span class="mv">Hips</span><span class="cue">Directly over your shoulders, not your backside sticking out behind you. Tuck your tailbone slightly under, the way you would to flatten your lower back on the floor.</span></li>
-    <li><span class="mv">Legs</span><span class="cue">Glutes squeezed, legs together and straight, toes pointed.</span></li>
-  </ul>
-</div>
-<figure class="dia">
-<svg viewBox="0 0 520 240" role="img" aria-label="A stacked straight handstand line beside an arched banana handstand">
-  <line x1="30" y1="210" x2="230" y2="210" stroke="currentColor" stroke-width="2" opacity=".35"/>
-  <line x1="290" y1="210" x2="490" y2="210" stroke="currentColor" stroke-width="2" opacity=".35"/>
-  <line x1="130" y1="30" x2="130" y2="210" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity=".4"/>
-  <line x1="390" y1="30" x2="390" y2="210" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity=".4"/>
-  <g stroke="currentColor" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="118" y1="208" x2="142" y2="208" stroke-width="7"/>
-    <line x1="130" y1="208" x2="130" y2="176"/>
-    <line x1="130" y1="176" x2="130" y2="70"/>
-    <circle cx="130" cy="188" r="9" fill="currentColor" stroke="none"/>
-    <line x1="130" y1="70" x2="130" y2="52"/>
-  </g>
-  <text x="130" y="234" text-anchor="middle" font-size="13" fill="currentColor" opacity=".8">Stacked, aim here</text>
-  <g stroke="var(--warn)" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="378" y1="208" x2="402" y2="208" stroke-width="7"/>
-    <line x1="390" y1="208" x2="390" y2="176"/>
-    <path d="M390 176 C 420 150, 424 100, 398 60"/>
-    <circle cx="390" cy="188" r="9" fill="var(--warn)" stroke="none"/>
-    <line x1="398" y1="60" x2="400" y2="44"/>
-  </g>
-  <text x="390" y="234" text-anchor="middle" font-size="13" fill="var(--warn)" opacity=".9">Banana, avoid</text>
-</svg>
-<figcaption>Left: the joints stacked, so gravity does the balancing. Right: the banana, arched through the lower back with the hips thrown forward. The cues above, ribs down and glutes on, are what close that gap.</figcaption>
-</figure>
-
-<hr class="sep">
-
-<h2>The phases</h2>
-<p class="small" style="margin-top:-4px">Do only the phase you are on.</p>
+<h2>Your phase</h2>
+<p class="small" style="margin-top:-4px">Open the one you are on and do the whole session. Each starts with the 5-minute warm-up (under Reference), then the work below.</p>
 
 <!-- PHASE 0 -->
 <details class="phase" open>
@@ -260,38 +181,30 @@
   </summary>
   <div class="pbody">
     <p><b>Goal:</b> build wrist tolerance, open shoulders overhead, and a hollow-body core before inverting.</p>
-    <h4>The work</h4>
+    <h4>Skill</h4>
     <ul class="moves">
       <li><span class="mv">Loaded wrist rocks</span> <span class="dose">3&times;20s</span><span class="cue">Pause and hold at end range under bodyweight. Stop at sharp pain.</span></li>
       <li><span class="mv">Quadruped weight shift</span> <span class="dose">3&times;30s</span><span class="cue">On all fours, shift weight forward onto the hands and hold. Lean further over time.</span></li>
       <li><span class="mv">Hollow-body hold</span> <span class="dose">4&times;20&ndash;30s</span><span class="cue">Lower back flat. Start tucked; extend the limbs only while the back stays flat.</span></li>
       <li><span class="mv">Overhead wall reach</span> <span class="dose">3&times;20s</span><span class="cue">Back to a wall, arms overhead to touch it without arching the back or bending the elbows.</span></li>
-      <li><span class="mv">Wall-walk intro (optional)</span> <span class="dose">3 reps</span><span class="cue">Feet on the wall, walk hands out to a plank and back.</span></li>
+      <li><span class="mv">Wall walk</span> <span class="dose">3&ndash;5 reps</span><span class="cue">Feet on the wall, walk the hands out towards a plank and back. Build towards walking closer to vertical.</span></li>
+    </ul>
+    <h4>Strength</h4>
+    <ul class="moves">
+      <li><span class="mv">Push-ups</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Full range, chest to the floor.</span></li>
+      <li><span class="mv">Arch / superman hold</span> <span class="dose">3&times;20&ndash;30s</span><span class="cue">Face down, lift the chest and legs off the floor. The back half of the core.</span></li>
     </ul>
     <div class="vid">
       <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/HAfUt2Cco74" title="Hollow body hold progressions" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
       <p class="vcap"><b>Hollow-body progressions.</b> <a href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">Open on YouTube</a></p>
     </div>
-    <figure class="dia">
-    <svg viewBox="0 0 480 180" role="img" aria-label="Hollow body position lying on the floor">
-      <line x1="30" y1="118" x2="450" y2="118" stroke="currentColor" stroke-width="2" opacity=".35"/>
-      <g stroke="currentColor" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M150 96 Q 240 118 330 96"/>
-        <line x1="150" y1="96" x2="96" y2="70"/>
-        <line x1="330" y1="96" x2="392" y2="70"/>
-        <circle cx="140" cy="92" r="9" fill="currentColor" stroke="none"/>
-      </g>
-      <line x1="240" y1="120" x2="240" y2="154" stroke="var(--accent)" stroke-width="2"/>
-      <text x="240" y="174" text-anchor="middle" font-size="12" fill="var(--accent)">lower back pressed flat</text>
-    </svg>
-    <figcaption>Hollow body: the handstand shape lying down. If the lower back lifts, bring the arms and legs in until it presses flat.</figcaption>
-    </figure>
     <div class="note good">
       <p class="t">Ready for Phase 1</p>
       <div class="check"><input type="checkbox" id="g0a"><label for="g0a">Hollow-body hold 30&ndash;45s, lower back flat</label></div>
       <div class="check"><input type="checkbox" id="g0b"><label for="g0b">Quadruped weight-shift 30s over the hands, no sharp wrist pain</label></div>
       <div class="check"><input type="checkbox" id="g0c"><label for="g0c">Overhead wall reach, flat back, straight elbows</label></div>
-      <div class="check"><input type="checkbox" id="g0d"><label for="g0d">Wrists fine the next day</label></div>
+      <div class="check"><input type="checkbox" id="g0d"><label for="g0d">Wall walk to near-vertical, hold 10s, no wrist pain</label></div>
+      <div class="check"><input type="checkbox" id="g0e"><label for="g0e">Wrists fine the next day</label></div>
     </div>
   </div>
 </details>
@@ -304,13 +217,18 @@
     <span class="chev">&#9656;</span>
   </summary>
   <div class="pbody">
-    <p><b>Goal:</b> build the stacked, hollow line and the endurance it needs. The most important phase; do not rush it.</p>
-    <h4>The work</h4>
+    <p><b>Goal:</b> build the stacked, hollow shape and the endurance it needs. The most important phase; do not rush it.</p>
+    <h4>Skill</h4>
     <ul class="moves">
       <li><span class="mv">Wall walk to chest-to-wall</span> <span class="dose">3&ndash;5 reps</span><span class="cue">From a plank with feet at the wall, walk hands in and feet up until chest and hips stack over the hands.</span></li>
       <li><span class="mv">Chest-to-wall hold</span> <span class="dose">build to 60s</span><span class="cue">Push tall through the shoulders, ribs down, glutes on, body long. Accumulate the time across sets.</span></li>
       <li><span class="mv">Shoulder shrugs in the hold</span> <span class="dose">2&times;5</span><span class="cue">Shrug up towards the ears and back down.</span></li>
-      <li><span class="mv">One-foot taps (late)</span> <span class="dose">3&times;3 each</span><span class="cue">Peel one foot off the wall a few centimetres, hold, replace.</span></li>
+      <li><span class="mv">One-foot taps</span> <span class="dose">3&times;3 each</span><span class="cue">Late in the phase. Peel one foot off the wall a few centimetres, hold, replace.</span></li>
+    </ul>
+    <h4>Strength</h4>
+    <ul class="moves">
+      <li><span class="mv">Push-ups</span> <span class="dose">3&times;10&ndash;12</span><span class="cue">Raise the feet onto a step once 12 is easy.</span></li>
+      <li><span class="mv">Hollow rocks</span> <span class="dose">3&times;10</span><span class="cue">From the hollow hold, rock slowly without losing the flat back.</span></li>
     </ul>
     <div class="vid short">
       <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/u4LitSoIy4s" title="Chest to wall handstand" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
@@ -336,35 +254,24 @@
     <p><b>Goal:</b> learn to enter a freestanding handstand, and to exit it. Learn the bail first.</p>
     <div class="note warn">
       <p class="t">Bail first</p>
-      <p>Drill the cartwheel bail until it is automatic in both directions before any freestanding kick-ups.</p>
+      <p>Spend the first week or two on the cartwheel bail alone, until it is automatic in both directions, before any freestanding kick-ups. Clear about 2m by 2m with nothing to hit.</p>
     </div>
-    <h4>The work</h4>
+    <h4>Skill</h4>
     <ul class="moves">
       <li><span class="mv">Cartwheel bail drill</span> <span class="dose">5 each side</span><span class="cue">When tipping past balance, turn the shoulders and cartwheel out to the side. Drill it deliberately.</span></li>
       <li><span class="mv">Back-to-wall kick-up</span> <span class="dose">5&ndash;8 reps</span><span class="cue">Lunge, hands a hand-span from the wall, kick up so the heels meet the wall softly.</span></li>
-      <li><span class="mv">Kick-up to balance (off wall)</span> <span class="dose">5&ndash;8 reps</span><span class="cue">In open space, kick up, catch a moment of balance, bail out the side when it drifts.</span></li>
+      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall with toes touching, push tall and lean the shoulders forward just enough to float the toes off. Find the balance point on the wall first.</span></li>
+      <li><span class="mv">Kick-up to balance (off wall)</span> <span class="dose">5&ndash;8 reps</span><span class="cue">In your cleared space, kick up, catch a moment of balance, bail out the side when it drifts.</span></li>
+    </ul>
+    <h4>Strength</h4>
+    <ul class="moves">
+      <li><span class="mv">Pike push-ups</span> <span class="dose">3&times;5&ndash;8</span><span class="cue">Hips high in an inverted V, head towards the floor between the hands. Keep reps low and raise the hands on books if the wrists complain.</span></li>
+      <li><span class="mv">Leg raises</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Lying, lift straight legs to vertical and lower slowly.</span></li>
     </ul>
     <div class="vid">
       <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/ZzEP7XvkDDk" title="How to bail out of a handstand" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
       <p class="vcap"><b>Cartwheel and pirouette bail.</b> <a href="https://www.youtube.com/watch?v=ZzEP7XvkDDk" target="_blank" rel="noopener">Open on YouTube</a></p>
     </div>
-    <figure class="dia">
-    <svg viewBox="0 0 420 180" role="img" aria-label="The kick-up lunge starting position">
-      <line x1="20" y1="150" x2="400" y2="150" stroke="currentColor" stroke-width="2" opacity=".35"/>
-      <g stroke="currentColor" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="70" y1="148" x2="94" y2="148" stroke-width="7"/>
-        <line x1="82" y1="148" x2="120" y2="96"/>
-        <line x1="120" y1="96" x2="170" y2="70"/>
-        <circle cx="182" cy="66" r="9" fill="currentColor" stroke="none"/>
-        <line x1="150" y1="86" x2="150" y2="150"/>
-        <line x1="150" y1="86" x2="240" y2="120"/>
-      </g>
-      <path d="M250 120 Q 300 80 300 40" stroke="var(--accent)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
-      <defs><marker id="ah" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--accent)"/></marker></defs>
-      <text x="300" y="30" text-anchor="middle" font-size="12" fill="var(--accent)">back leg swings up</text>
-    </svg>
-    <figcaption>Kick-up lunge: front knee bent and planted, arms reaching to the floor, hips over the hands. The back leg swings up first. Float up, do not launch.</figcaption>
-    </figure>
     <div class="note good">
       <p class="t">Ready for Phase 3</p>
       <div class="check"><input type="checkbox" id="g2a"><label for="g2a">Cartwheel bail automatic, both directions</label></div>
@@ -383,12 +290,17 @@
   </summary>
   <div class="pbody">
     <p><b>Goal:</b> extend the balance into a hold, steering with the fingers.</p>
-    <h4>The work</h4>
+    <h4>Skill</h4>
     <ul class="moves">
-      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall with toes touching, push tall, ribs tucked, lean the shoulders forward to float the toes off.</span></li>
+      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall, push tall and lean forward to float the toes off and hold the balance.</span></li>
       <li><span class="mv">Fingertip balance</span> <span class="dose">within holds</span><span class="cue">Tipping towards the fingers: press into the fingertips and knuckles. Tipping back: ease the fingers.</span></li>
       <li><span class="mv">Freestanding kick-up to hold</span> <span class="dose">6&ndash;10 reps</span><span class="cue">Kick up and stay, steering with the hands. Bail when it runs away.</span></li>
       <li><span class="mv">Heel-pull drill</span> <span class="dose">3&ndash;5 reps</span><span class="cue">From chest-to-wall, pull the heels off and down towards the floor to arrest a forward tip.</span></li>
+    </ul>
+    <h4>Strength</h4>
+    <ul class="moves">
+      <li><span class="mv">Pike push-ups</span> <span class="dose">3&times;6&ndash;10</span><span class="cue">Raise the feet higher over time. Raise the hands on books if the wrists complain.</span></li>
+      <li><span class="mv">Tuck L-sit</span> <span class="dose">3&times;10&ndash;20s</span><span class="cue">On the floor or two books, knees tucked, lift the hips off the ground.</span></li>
     </ul>
     <div class="vid short">
       <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/A3JLPWyT14M" title="Toe pulls for handstand balance" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
@@ -404,34 +316,94 @@
   </div>
 </details>
 
+<h2>Light session &middot; Mon &amp; Wed</h2>
+<p class="small" style="margin-top:-4px">No wrist-bearing work, so the wrists stay fresh. Warm-up (5 min), then:</p>
+<div class="card pad">
+  <ul class="moves">
+    <li><span class="mv">Arch / superman hold</span> <span class="dose">3&times;20&ndash;30s</span><span class="cue">Face down, lift the chest and legs. Builds the back.</span></li>
+    <li><span class="mv">Side plank</span> <span class="dose">2&times;20&ndash;30s each</span><span class="cue">The side stability the hollow and arch miss.</span></li>
+    <li><span class="mv">Wrist curls &amp; extensions</span> <span class="dose">2&times;15&ndash;20</span><span class="cue">Light band or dumbbell, palm-up then palm-down. Pain-free and high-rep.</span></li>
+    <li><span class="mv">Fingertip &amp; knuckle holds</span> <span class="dose">3&times;20s</span><span class="cue">On all fours, take some weight through spread fingertips. Builds the grip balancing needs.</span></li>
+    <li><span class="mv">Inverted rows</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Under a bar or a sturdy table, body straight, pull your chest up to it. This is what builds your back. Skip if you have nothing to row under.</span></li>
+  </ul>
+</div>
+
 <hr class="sep">
 
-<h2>Strength</h2>
-<p class="small" style="margin-top:-4px">The phases teach balance; this builds the shoulders, back and core underneath it, and is your on-ramp to calisthenics. On skill days, after the balance work, do one push exercise and one or two core exercises. About 5 to 8 minutes.</p>
+<h2>Reference</h2>
 
-<p class="subh">Push</p>
-<div class="card pad">
-  <ul class="moves">
-    <li><span class="mv">Push-ups</span> <span class="dose">3 sets</span><span class="cue">Full range, chest to the floor. When 3&times;12 is easy, raise the feet onto a step.</span></li>
-    <li><span class="mv">Pike push-ups</span> <span class="dose">3&times;5&ndash;10</span><span class="cue">Hips high in an inverted V, lower the head towards the floor between the hands. The main builder of overhead pressing strength, and the path to a handstand push-up later. Raise the feet higher over time.</span></li>
-  </ul>
-</div>
+<details class="ref">
+  <summary>Warm-up &middot; every session, ~5 min</summary>
+  <div class="rbody">
+    <p class="small">Do not load cold wrists. Mornings you are stiffest, so warm up thoroughly and ease into the first hold.</p>
+    <ul class="moves">
+      <li><span class="mv">Forearm &amp; shoulder release</span> <span class="dose">30&ndash;60s</span><span class="cue">Free up the forearm flexors and shoulders.</span></li>
+      <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: palms-down rock forward, fingers-back rock, then side to side. Slow.</span></li>
+      <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly.</span></li>
+      <li><span class="mv">Shoulder circles or wall slides</span> <span class="dose">~45s</span><span class="cue">Move the overhead reach through full range.</span></li>
+      <li><span class="mv">Thread-the-needle or band pass-throughs</span> <span class="dose">~45s</span><span class="cue">Open the shoulders towards overhead. No pinching.</span></li>
+      <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span></li>
+      <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span></li>
+    </ul>
+    <div class="vid">
+      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/mSZWSQSSEjE" title="Wrist prep routine" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <p class="vcap"><b>Wrist prep</b> &middot; FitnessFAQs. <a href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+  </div>
+</details>
 
-<p class="subh">Core, both sides</p>
-<div class="card pad">
-  <ul class="moves">
-    <li><span class="mv">Hollow hold</span> <span class="dose">3&times;20&ndash;40s</span><span class="cue">The front. Lie on your back, lower back pressed flat, shoulders and legs lifted. Progress to slow hollow rocks.</span></li>
-    <li><span class="mv">Arch / superman hold</span> <span class="dose">3&times;20&ndash;30s</span><span class="cue">The back, the half most people skip. Face down, lift the chest and legs off the floor. This is where your back gets stronger.</span></li>
-    <li><span class="mv">Leg raises</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Lying, lift straight legs to vertical and lower slowly. Builds towards a tuck L-sit.</span></li>
-  </ul>
-</div>
+<details class="ref">
+  <summary>Alignment &middot; the shape you are chasing</summary>
+  <div class="rbody">
+    <p class="small">Stack the big joints, wrists under shoulders under hips under ankles, so you balance with little effort. The common fault is arching the lower back (the banana), which pushes the hips out of the stack. What each part does, from the ground up:</p>
+    <ul class="moves">
+      <li><span class="mv">Hands</span><span class="cue">Fingers spread, gripping the floor, weight through the fingertips.</span></li>
+      <li><span class="mv">Shoulders</span><span class="cue">Push tall and reach fully overhead, ears between the arms. This is what stacks you.</span></li>
+      <li><span class="mv">Ribs</span><span class="cue">Do not let your ribcage pop up and forwards. Gently brace your stomach so the front of your body stays flat. Same feeling as the hollow-body hold.</span></li>
+      <li><span class="mv">Hips</span><span class="cue">Directly over your shoulders, not your backside sticking out behind you. Tuck your tailbone slightly under, the way you would to flatten your lower back on the floor.</span></li>
+      <li><span class="mv">Legs</span><span class="cue">Glutes squeezed, legs together and straight, toes pointed.</span></li>
+    </ul>
+    <figure class="dia">
+    <svg viewBox="0 0 520 240" role="img" aria-label="A stacked straight handstand beside an arched banana handstand">
+      <line x1="30" y1="210" x2="230" y2="210" stroke="currentColor" stroke-width="2" opacity=".35"/>
+      <line x1="290" y1="210" x2="490" y2="210" stroke="currentColor" stroke-width="2" opacity=".35"/>
+      <line x1="130" y1="30" x2="130" y2="210" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity=".4"/>
+      <line x1="390" y1="30" x2="390" y2="210" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity=".4"/>
+      <g stroke="currentColor" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="118" y1="208" x2="142" y2="208" stroke-width="7"/>
+        <line x1="130" y1="208" x2="130" y2="176"/>
+        <line x1="130" y1="176" x2="130" y2="70"/>
+        <circle cx="130" cy="188" r="9" fill="currentColor" stroke="none"/>
+        <line x1="130" y1="70" x2="130" y2="52"/>
+      </g>
+      <text x="130" y="234" text-anchor="middle" font-size="13" fill="currentColor" opacity=".8">Stacked, aim here</text>
+      <g stroke="var(--warn)" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="378" y1="208" x2="402" y2="208" stroke-width="7"/>
+        <line x1="390" y1="208" x2="390" y2="176"/>
+        <path d="M390 176 C 420 150, 424 100, 398 60"/>
+        <circle cx="390" cy="188" r="9" fill="var(--warn)" stroke="none"/>
+        <line x1="398" y1="60" x2="400" y2="44"/>
+      </g>
+      <text x="390" y="234" text-anchor="middle" font-size="13" fill="var(--warn)" opacity=".9">Banana, avoid</text>
+    </svg>
+    <figcaption>Left: the joints stacked, so gravity does the balancing. Right: the banana, arched through the lower back with the hips thrown forward. Ribs down and glutes on close that gap.</figcaption>
+    </figure>
+  </div>
+</details>
 
-<p class="subh">Pull &middot; optional, needs a bar or rings</p>
-<div class="card pad">
-  <ul class="moves">
-    <li><span class="mv">Rows or pull-ups</span> <span class="dose">3 sets</span><span class="cue">Not needed for the handstand itself, but it balances the shoulders and posture and makes this a complete calisthenics base. Add it if you have a bar.</span></li>
-  </ul>
-</div>
+<details class="ref">
+  <summary>Guardrails &middot; stop and read if something feels off</summary>
+  <div class="rbody">
+    <div class="note warn"><p class="t">Wrists: sharp or joint pain</p><p>Forearm ache is fine. Sharp pain, or pain in the joint, means stop. Go back to the warm-up and prep-only loading, and cut volume next session.</p></div>
+    <div class="note warn"><p class="t">If the wrist angle hurts</p><p>Reduce the angle: work on parallettes or push-up handles, or make fists on a mat. Progress back to flat palms over weeks.</p></div>
+    <div class="note warn"><p class="t">Neck or arms: tingling, or pressure in the neck</p><p>You should feel it in the hands and shoulders. Tingling down the arms or a compressed neck means come down.</p></div>
+    <div class="note warn"><p class="t">Shoulders: pinch at the top of the reach</p><p>Do not force it. Reduce the range and do more shoulder mobility. It opens over weeks.</p></div>
+    <div class="note warn"><p class="t">Head rush or dizziness</p><p>Come out of every inversion slowly. Sit and hydrate if light-headed.</p></div>
+    <div class="note warn"><p class="t">Pinch in the lower back upside down</p><p>You are arching (the banana). Ribs down, glutes on, more hollow work.</p></div>
+    <div class="note warn"><p class="t">Clear the space before kicking up</p><p>From Phase 2 on, clear about 2m by 2m with nothing to hit, ideally over a mat or carpet, and bail towards the open side.</p></div>
+    <div class="note warn"><p class="t">Fear when tipping over</p><p>Never kick up freestanding until the cartwheel bail is automatic. That is the job of Phase 2.</p></div>
+  </div>
+</details>
 
 <hr class="sep">
 
@@ -447,7 +419,6 @@
 </div>
 
 <script>
-  // Persist every checkbox to localStorage by id.
   (function(){
     var KEY = 'handstand-progress-v1';
     var saved = {};
