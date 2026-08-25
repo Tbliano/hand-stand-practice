@@ -88,7 +88,7 @@
   .chev{flex:0 0 auto; color:var(--faint); transition:transform .2s ease; margin-top:8px}
   details.phase[open] .chev{transform:rotate(90deg)}
   .pbody{padding:2px 20px 22px; border-top:1px solid var(--line)}
-  .pbody h4{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:22px 0 4px}
+  .pbody h4{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:22px 0 8px}
 
   ul.moves{list-style:none; padding:0; margin:0}
   ul.moves>li{padding:12px 0; border-bottom:1px solid var(--line)}
@@ -96,10 +96,7 @@
   ul.moves .mv{font-weight:650}
   ul.moves .dose{color:var(--accent-ink); font-weight:600; font-size:14px}
   ul.moves .cue{display:block; color:var(--muted); font-size:14.5px; margin-top:2px}
-
-  /* one video per bucket of exercises */
-  .bucket{margin:14px 0 2px}
-  .howto{display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:.02em; color:var(--accent-ink); border:1px solid var(--good-line); border-radius:999px; padding:3px 12px}
+  .howto{display:inline-block; margin-top:8px; font-size:12.5px; font-weight:700; letter-spacing:.02em; color:var(--accent-ink); border:1px solid var(--good-line); border-radius:999px; padding:3px 12px}
   .howto:hover{border-color:var(--accent); background:var(--good-bg)}
 
   /* warm-up (nested inside each workout) */
@@ -109,7 +106,6 @@
   details.warm>summary::after{content:"\25B8"; color:var(--faint); font-size:12px; transition:transform .2s ease}
   details.warm[open]>summary::after{transform:rotate(90deg)}
   details.warm .wbody{padding:0 14px 8px}
-  details.warm .wbody .bucket:first-child{margin-top:6px}
 
   /* diagrams */
   figure.dia{margin:16px 0; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px; box-shadow:var(--shadow)}
@@ -156,7 +152,7 @@
     <span class="chip"><b>~20 min</b></span>
     <span class="chip">4 phases</span>
   </div>
-  <p class="small" style="margin-top:14px">On a skill day, do your current phase below: warm-up, skill work, then strength, about 20 minutes. On a light day (Mon, Wed), do the light session. Each group of moves has one <b>&#9655; Watch</b> video. Advance a phase only when you pass its test. Ticks save on this device.</p>
+  <p class="small" style="margin-top:14px">On a skill day, do your current phase below: warm-up, skill work, then strength, about 20 minutes. On a light day (Mon, Wed), do the light session. Each exercise has its own <b>&#9655; Watch</b> demo. Advance a phase only when you pass its test. Ticks save on this device.</p>
 </header>
 
 <h2>The week</h2>
@@ -189,56 +185,35 @@
     <details class="warm">
       <summary>Warm-up &middot; 5 min</summary>
       <div class="wbody">
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">&#9655; Watch: Wrist prep</a></p>
         <ul class="moves">
-          <li><span class="mv">Forearm &amp; shoulder release</span> <span class="dose">30&ndash;60s</span><span class="cue">Free up the forearm flexors and shoulders.</span></li>
-          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: palms-down rock forward, fingers-back rock, then side to side. Slow.</span></li>
-          <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6XSWhXMzDPU" target="_blank" rel="noopener">&#9655; Watch: Shoulder mobility</a></p>
-        <ul class="moves">
-          <li><span class="mv">Shoulder circles or wall slides</span> <span class="dose">~45s</span><span class="cue">Move the overhead reach through full range.</span></li>
-          <li><span class="mv">Band pass-throughs or thread-the-needle</span> <span class="dose">~45s</span><span class="cue">Open the shoulders towards overhead. No pinching.</span></li>
-          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">&#9655; Watch: Hollow body</a></p>
-        <ul class="moves">
-          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span></li>
+          <li><span class="mv">Wrist &amp; forearm stretch</span> <span class="dose">30&ndash;60s</span><span class="cue">Kneel, palms down and fingers pointing back, lean gently to stretch the forearm flexors.</span><a class="howto" href="https://www.youtube.com/watch?v=QiMiia4F7Xg" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: rock forward, back with fingers turned in, then side to side. Slow.</span><a class="howto" href="https://www.youtube.com/watch?v=O5vygZz5Q6U" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Finger pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Press through the fingertips and lift the palm slightly, rhythmically.</span><a class="howto" href="https://www.youtube.com/watch?v=nM7wB89NlwE" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wall slides</span> <span class="dose">~45s</span><span class="cue">Back to a wall, slide the arms overhead and down, keeping contact.</span><a class="howto" href="https://www.youtube.com/watch?v=YIvNRUJp7_E" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Band pass-throughs</span> <span class="dose">~45s</span><span class="cue">Hold a band wide, take it overhead and behind, and back. Widen the grip if the shoulders pinch.</span><a class="howto" href="https://www.youtube.com/watch?v=riVxa9By-pM" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span><a class="howto" href="https://www.youtube.com/watch?v=59BPdBnDjLY" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span><a class="howto" href="https://www.youtube.com/watch?v=MY6_stJuy7M" target="_blank" rel="noopener">&#9655; Watch</a></li>
         </ul>
       </div>
     </details>
     <h4>Skill</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">&#9655; Watch: Wrist prep</a></p>
     <ul class="moves">
-      <li><span class="mv">Loaded wrist rocks</span> <span class="dose">3&times;20s</span><span class="cue">Pause and hold at end range under bodyweight. Stop at sharp pain.</span></li>
-      <li><span class="mv">Quadruped weight shift</span> <span class="dose">3&times;30s</span><span class="cue">On all fours, shift weight forward onto the hands and hold. Lean further over time.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">&#9655; Watch: Hollow body</a></p>
-    <ul class="moves">
-      <li><span class="mv">Hollow-body hold</span> <span class="dose">4&times;20&ndash;30s</span><span class="cue">Lower back flat. Start tucked; extend the limbs only while the back stays flat.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6XSWhXMzDPU" target="_blank" rel="noopener">&#9655; Watch: Shoulder mobility</a></p>
-    <ul class="moves">
-      <li><span class="mv">Overhead wall reach</span> <span class="dose">3&times;20s</span><span class="cue">Back to a wall, arms overhead to touch it without arching the back or bending the elbows.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=Z1BEEzg5L6Q" target="_blank" rel="noopener">&#9655; Watch: Wall walk &amp; kick-up</a></p>
-    <ul class="moves">
-      <li><span class="mv">Wall walk</span> <span class="dose">3&ndash;5 reps</span><span class="cue">Feet on the wall, walk the hands out towards a plank and back. Build towards walking closer to vertical.</span></li>
+      <li><span class="mv">Loaded wrist extension</span> <span class="dose">3&times;20s</span><span class="cue">On all fours, fingers forward, rock the weight over the wrists and hold near end range. Stop at sharp pain.</span><a class="howto" href="https://www.youtube.com/watch?v=aXRX1Cq4UeM" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Quadruped weight shift</span> <span class="dose">3&times;30s</span><span class="cue">On all fours, shift weight forward onto the hands and hold. Lean further over time.</span><a class="howto" href="https://www.youtube.com/watch?v=QSj77-1cuQg" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Hollow-body hold</span> <span class="dose">4&times;20&ndash;30s</span><span class="cue">Lower back flat. Start tucked; extend the limbs only while the back stays flat.</span><a class="howto" href="https://www.youtube.com/watch?v=MY6_stJuy7M" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Back-to-wall shoulder flexion</span> <span class="dose">3&times;20s</span><span class="cue">Back to a wall, arms overhead to touch it without arching the back or bending the elbows.</span><a class="howto" href="https://www.youtube.com/watch?v=wbyhKCjrPSQ" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Wall walk</span> <span class="dose">3&ndash;5 reps</span><span class="cue">Feet on the wall, walk the hands in towards the wall and back down. Build towards walking closer to vertical.</span><a class="howto" href="https://www.youtube.com/watch?v=VpuoE246W1Y" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <h4>Strength</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=IODxDxX7oi4" target="_blank" rel="noopener">&#9655; Watch: Push-up form</a></p>
     <ul class="moves">
-      <li><span class="mv">Push-ups</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Full range, chest to the floor.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=YPas7rz2aN8" target="_blank" rel="noopener">&#9655; Watch: Hollow &amp; arch core</a></p>
-    <ul class="moves">
-      <li><span class="mv">Arch / superman hold</span> <span class="dose">3&times;20&ndash;30s</span><span class="cue">Face down, lift the chest and legs off the floor. The back half of the core.</span></li>
+      <li><span class="mv">Push-ups</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Full range, chest to the floor.</span><a class="howto" href="https://www.youtube.com/watch?v=WDIpL0pjun0" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Arch / superman hold</span> <span class="dose">3&times;20&ndash;30s</span><span class="cue">Face down, lift the chest and legs off the floor. The back half of the core.</span><a class="howto" href="https://www.youtube.com/watch?v=Z6k-dYzmfbA" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <div class="note good">
       <p class="t">Ready for Phase 1</p>
       <div class="check"><input type="checkbox" id="g0a"><label for="g0a">Hollow-body hold 30&ndash;45s, lower back flat</label></div>
       <div class="check"><input type="checkbox" id="g0b"><label for="g0b">Quadruped weight-shift 30s over the hands, no sharp wrist pain</label></div>
-      <div class="check"><input type="checkbox" id="g0c"><label for="g0c">Overhead wall reach, flat back, straight elbows</label></div>
+      <div class="check"><input type="checkbox" id="g0c"><label for="g0c">Back-to-wall shoulder flexion, flat back, straight elbows</label></div>
       <div class="check"><input type="checkbox" id="g0d"><label for="g0d">Wall walk to near-vertical, hold 10s, no wrist pain</label></div>
       <div class="check"><input type="checkbox" id="g0e"><label for="g0e">Wrists fine the next day</label></div>
     </div>
@@ -257,43 +232,27 @@
     <details class="warm">
       <summary>Warm-up &middot; 5 min</summary>
       <div class="wbody">
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">&#9655; Watch: Wrist prep</a></p>
         <ul class="moves">
-          <li><span class="mv">Forearm &amp; shoulder release</span> <span class="dose">30&ndash;60s</span><span class="cue">Free up the forearm flexors and shoulders.</span></li>
-          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: palms-down rock forward, fingers-back rock, then side to side. Slow.</span></li>
-          <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6XSWhXMzDPU" target="_blank" rel="noopener">&#9655; Watch: Shoulder mobility</a></p>
-        <ul class="moves">
-          <li><span class="mv">Shoulder circles or wall slides</span> <span class="dose">~45s</span><span class="cue">Move the overhead reach through full range.</span></li>
-          <li><span class="mv">Band pass-throughs or thread-the-needle</span> <span class="dose">~45s</span><span class="cue">Open the shoulders towards overhead. No pinching.</span></li>
-          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">&#9655; Watch: Hollow body</a></p>
-        <ul class="moves">
-          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span></li>
+          <li><span class="mv">Wrist &amp; forearm stretch</span> <span class="dose">30&ndash;60s</span><span class="cue">Kneel, palms down and fingers pointing back, lean gently to stretch the forearm flexors.</span><a class="howto" href="https://www.youtube.com/watch?v=QiMiia4F7Xg" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: rock forward, back with fingers turned in, then side to side. Slow.</span><a class="howto" href="https://www.youtube.com/watch?v=O5vygZz5Q6U" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Finger pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Press through the fingertips and lift the palm slightly, rhythmically.</span><a class="howto" href="https://www.youtube.com/watch?v=nM7wB89NlwE" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wall slides</span> <span class="dose">~45s</span><span class="cue">Back to a wall, slide the arms overhead and down, keeping contact.</span><a class="howto" href="https://www.youtube.com/watch?v=YIvNRUJp7_E" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Band pass-throughs</span> <span class="dose">~45s</span><span class="cue">Hold a band wide, take it overhead and behind, and back. Widen the grip if the shoulders pinch.</span><a class="howto" href="https://www.youtube.com/watch?v=riVxa9By-pM" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span><a class="howto" href="https://www.youtube.com/watch?v=59BPdBnDjLY" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span><a class="howto" href="https://www.youtube.com/watch?v=MY6_stJuy7M" target="_blank" rel="noopener">&#9655; Watch</a></li>
         </ul>
       </div>
     </details>
     <h4>Skill</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=u4LitSoIy4s" target="_blank" rel="noopener">&#9655; Watch: Chest-to-wall</a></p>
     <ul class="moves">
-      <li><span class="mv">Wall walk to chest-to-wall</span> <span class="dose">3&ndash;5 reps</span><span class="cue">From a plank with feet at the wall, walk hands in and feet up until chest and hips stack over the hands.</span></li>
-      <li><span class="mv">Chest-to-wall hold</span> <span class="dose">build to 60s</span><span class="cue">Push tall through the shoulders, ribs down, glutes on, body long. Accumulate the time across sets.</span></li>
-      <li><span class="mv">Shoulder shrugs in the hold</span> <span class="dose">2&times;5</span><span class="cue">Shrug up towards the ears and back down.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=A3JLPWyT14M" target="_blank" rel="noopener">&#9655; Watch: Toe &amp; heel pulls</a></p>
-    <ul class="moves">
-      <li><span class="mv">One-foot taps</span> <span class="dose">3&times;3 each</span><span class="cue">Late in the phase. Peel one foot off the wall a few centimetres, hold, replace.</span></li>
+      <li><span class="mv">Chest-to-wall hold</span> <span class="dose">build to 60s</span><span class="cue">Walk your feet up the wall and hands in until chest and hips stack over the hands, then hold. Push tall, ribs down, glutes on. Accumulate the time across sets.</span><a class="howto" href="https://www.youtube.com/watch?v=q-BIGXQRWGk" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Shoulder shrugs in the hold</span> <span class="dose">2&times;5</span><span class="cue">In the hold, shrug up towards the ears and back down.</span><a class="howto" href="https://www.youtube.com/watch?v=lVYL_lvl8qA" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">One-foot taps</span> <span class="dose">3&times;3 each</span><span class="cue">Late in the phase. Peel one foot off the wall a few centimetres, hold, replace.</span><a class="howto" href="https://www.youtube.com/watch?v=77COLZgi7KA" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <h4>Strength</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=IODxDxX7oi4" target="_blank" rel="noopener">&#9655; Watch: Push-up form</a></p>
     <ul class="moves">
-      <li><span class="mv">Push-ups</span> <span class="dose">3&times;10&ndash;12</span><span class="cue">Raise the feet onto a step once 12 is easy.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">&#9655; Watch: Hollow body</a></p>
-    <ul class="moves">
-      <li><span class="mv">Hollow rocks</span> <span class="dose">3&times;10</span><span class="cue">From the hollow hold, rock slowly without losing the flat back.</span></li>
+      <li><span class="mv">Push-ups</span> <span class="dose">3&times;10&ndash;12</span><span class="cue">Raise the feet onto a step once 12 is easy.</span><a class="howto" href="https://www.youtube.com/watch?v=WDIpL0pjun0" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Hollow rocks</span> <span class="dose">3&times;10</span><span class="cue">From the hollow hold, rock slowly without losing the flat back.</span><a class="howto" href="https://www.youtube.com/watch?v=XWNXnEfIdZU" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <div class="note good">
       <p class="t">Ready for Phase 2</p>
@@ -320,49 +279,28 @@
     <details class="warm">
       <summary>Warm-up &middot; 5 min</summary>
       <div class="wbody">
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">&#9655; Watch: Wrist prep</a></p>
         <ul class="moves">
-          <li><span class="mv">Forearm &amp; shoulder release</span> <span class="dose">30&ndash;60s</span><span class="cue">Free up the forearm flexors and shoulders.</span></li>
-          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: palms-down rock forward, fingers-back rock, then side to side. Slow.</span></li>
-          <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6XSWhXMzDPU" target="_blank" rel="noopener">&#9655; Watch: Shoulder mobility</a></p>
-        <ul class="moves">
-          <li><span class="mv">Shoulder circles or wall slides</span> <span class="dose">~45s</span><span class="cue">Move the overhead reach through full range.</span></li>
-          <li><span class="mv">Band pass-throughs or thread-the-needle</span> <span class="dose">~45s</span><span class="cue">Open the shoulders towards overhead. No pinching.</span></li>
-          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">&#9655; Watch: Hollow body</a></p>
-        <ul class="moves">
-          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span></li>
+          <li><span class="mv">Wrist &amp; forearm stretch</span> <span class="dose">30&ndash;60s</span><span class="cue">Kneel, palms down and fingers pointing back, lean gently to stretch the forearm flexors.</span><a class="howto" href="https://www.youtube.com/watch?v=QiMiia4F7Xg" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: rock forward, back with fingers turned in, then side to side. Slow.</span><a class="howto" href="https://www.youtube.com/watch?v=O5vygZz5Q6U" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Finger pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Press through the fingertips and lift the palm slightly, rhythmically.</span><a class="howto" href="https://www.youtube.com/watch?v=nM7wB89NlwE" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wall slides</span> <span class="dose">~45s</span><span class="cue">Back to a wall, slide the arms overhead and down, keeping contact.</span><a class="howto" href="https://www.youtube.com/watch?v=YIvNRUJp7_E" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Band pass-throughs</span> <span class="dose">~45s</span><span class="cue">Hold a band wide, take it overhead and behind, and back. Widen the grip if the shoulders pinch.</span><a class="howto" href="https://www.youtube.com/watch?v=riVxa9By-pM" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span><a class="howto" href="https://www.youtube.com/watch?v=59BPdBnDjLY" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span><a class="howto" href="https://www.youtube.com/watch?v=MY6_stJuy7M" target="_blank" rel="noopener">&#9655; Watch</a></li>
         </ul>
       </div>
     </details>
     <h4>Skill</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=ZzEP7XvkDDk" target="_blank" rel="noopener">&#9655; Watch: Cartwheel bail</a></p>
     <ul class="moves">
-      <li><span class="mv">Cartwheel bail drill</span> <span class="dose">5 each side</span><span class="cue">When tipping past balance, turn the shoulders and cartwheel out to the side. Drill it deliberately.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=Z1BEEzg5L6Q" target="_blank" rel="noopener">&#9655; Watch: Wall walk &amp; kick-up</a></p>
-    <ul class="moves">
-      <li><span class="mv">Back-to-wall kick-up</span> <span class="dose">5&ndash;8 reps</span><span class="cue">Lunge, hands a hand-span from the wall, kick up so the heels meet the wall softly.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=A3JLPWyT14M" target="_blank" rel="noopener">&#9655; Watch: Toe &amp; heel pulls</a></p>
-    <ul class="moves">
-      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall with toes touching, push tall and lean the shoulders forward just enough to float the toes off. Find the balance point on the wall first.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6DPl4QlAY4k" target="_blank" rel="noopener">&#9655; Watch: Freestanding balance</a></p>
-    <ul class="moves">
-      <li><span class="mv">Kick-up to balance (off wall)</span> <span class="dose">5&ndash;8 reps</span><span class="cue">In your cleared space, kick up, catch a moment of balance, bail out the side when it drifts.</span></li>
+      <li><span class="mv">Cartwheel bail drill</span> <span class="dose">5 each side</span><span class="cue">When tipping past balance, turn the shoulders and cartwheel out to the side. Drill it deliberately.</span><a class="howto" href="https://www.youtube.com/watch?v=LOws6nTIsyA" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Back-to-wall kick-up</span> <span class="dose">5&ndash;8 reps</span><span class="cue">Lunge, hands a hand-span from the wall, kick up so the heels meet the wall softly.</span><a class="howto" href="https://www.youtube.com/watch?v=jXPFBD-WZww" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall with toes touching, push tall and lean the shoulders forward just enough to float the toes off. Find the balance point on the wall first.</span><a class="howto" href="https://www.youtube.com/watch?v=ZxbkkWwJfuU" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Kick-up to balance (off wall)</span> <span class="dose">5&ndash;8 reps</span><span class="cue">In your cleared space, kick up, catch a moment of balance, bail out the side when it drifts.</span><a class="howto" href="https://www.youtube.com/watch?v=mfHcZQ-H_W4" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <h4>Strength</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=paCOGgmLCA0" target="_blank" rel="noopener">&#9655; Watch: Pike push-up</a></p>
     <ul class="moves">
-      <li><span class="mv">Pike push-ups</span> <span class="dose">3&times;5&ndash;8</span><span class="cue">Hips high in an inverted V, head towards the floor between the hands. Keep reps low and raise the hands on books if the wrists complain.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=YPas7rz2aN8" target="_blank" rel="noopener">&#9655; Watch: Hollow &amp; arch core</a></p>
-    <ul class="moves">
-      <li><span class="mv">Leg raises</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Lying, lift straight legs to vertical and lower slowly.</span></li>
+      <li><span class="mv">Pike push-ups</span> <span class="dose">3&times;5&ndash;8</span><span class="cue">Hips high in an inverted V, head towards the floor between the hands. Keep reps low and raise the hands on books if the wrists complain.</span><a class="howto" href="https://www.youtube.com/watch?v=paCOGgmLCA0" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Leg raises</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Lying, lift straight legs to vertical and lower slowly.</span><a class="howto" href="https://www.youtube.com/watch?v=xJJu-WiROM8" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <div class="note good">
       <p class="t">Ready for Phase 3</p>
@@ -385,43 +323,28 @@
     <details class="warm">
       <summary>Warm-up &middot; 5 min</summary>
       <div class="wbody">
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">&#9655; Watch: Wrist prep</a></p>
         <ul class="moves">
-          <li><span class="mv">Forearm &amp; shoulder release</span> <span class="dose">30&ndash;60s</span><span class="cue">Free up the forearm flexors and shoulders.</span></li>
-          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: palms-down rock forward, fingers-back rock, then side to side. Slow.</span></li>
-          <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6XSWhXMzDPU" target="_blank" rel="noopener">&#9655; Watch: Shoulder mobility</a></p>
-        <ul class="moves">
-          <li><span class="mv">Shoulder circles or wall slides</span> <span class="dose">~45s</span><span class="cue">Move the overhead reach through full range.</span></li>
-          <li><span class="mv">Band pass-throughs or thread-the-needle</span> <span class="dose">~45s</span><span class="cue">Open the shoulders towards overhead. No pinching.</span></li>
-          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span></li>
-        </ul>
-        <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">&#9655; Watch: Hollow body</a></p>
-        <ul class="moves">
-          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span></li>
+          <li><span class="mv">Wrist &amp; forearm stretch</span> <span class="dose">30&ndash;60s</span><span class="cue">Kneel, palms down and fingers pointing back, lean gently to stretch the forearm flexors.</span><a class="howto" href="https://www.youtube.com/watch?v=QiMiia4F7Xg" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: rock forward, back with fingers turned in, then side to side. Slow.</span><a class="howto" href="https://www.youtube.com/watch?v=O5vygZz5Q6U" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Finger pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Press through the fingertips and lift the palm slightly, rhythmically.</span><a class="howto" href="https://www.youtube.com/watch?v=nM7wB89NlwE" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Wall slides</span> <span class="dose">~45s</span><span class="cue">Back to a wall, slide the arms overhead and down, keeping contact.</span><a class="howto" href="https://www.youtube.com/watch?v=YIvNRUJp7_E" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Band pass-throughs</span> <span class="dose">~45s</span><span class="cue">Hold a band wide, take it overhead and behind, and back. Widen the grip if the shoulders pinch.</span><a class="howto" href="https://www.youtube.com/watch?v=riVxa9By-pM" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span><a class="howto" href="https://www.youtube.com/watch?v=59BPdBnDjLY" target="_blank" rel="noopener">&#9655; Watch</a></li>
+          <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span><a class="howto" href="https://www.youtube.com/watch?v=MY6_stJuy7M" target="_blank" rel="noopener">&#9655; Watch</a></li>
         </ul>
       </div>
     </details>
     <h4>Skill</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=A3JLPWyT14M" target="_blank" rel="noopener">&#9655; Watch: Toe &amp; heel pulls</a></p>
     <ul class="moves">
-      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall, push tall and lean forward to float the toes off and hold the balance.</span></li>
-      <li><span class="mv">Heel-pull drill</span> <span class="dose">3&ndash;5 reps</span><span class="cue">From chest-to-wall, pull the heels off and down towards the floor to arrest a forward tip.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6DPl4QlAY4k" target="_blank" rel="noopener">&#9655; Watch: Freestanding balance</a></p>
-    <ul class="moves">
-      <li><span class="mv">Freestanding kick-up to hold</span> <span class="dose">6&ndash;10 reps</span><span class="cue">Kick up and stay, steering with the hands. Bail when it runs away.</span></li>
-      <li><span class="mv">Fingertip balance</span> <span class="dose">within holds</span><span class="cue">Tipping towards the fingers: press into the fingertips and knuckles. Tipping back: ease the fingers.</span></li>
+      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall, push tall and lean forward to float the toes off and hold the balance.</span><a class="howto" href="https://www.youtube.com/watch?v=ZxbkkWwJfuU" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Heel-pull drill</span> <span class="dose">3&ndash;5 reps</span><span class="cue">From chest-to-wall, pull the heels off and down towards the floor to arrest a forward tip.</span><a class="howto" href="https://www.youtube.com/watch?v=OYehg2ruMN0" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Freestanding kick-up to hold</span> <span class="dose">6&ndash;10 reps</span><span class="cue">Kick up and stay, steering with the hands. Bail when it runs away.</span><a class="howto" href="https://www.youtube.com/watch?v=Z1BEEzg5L6Q" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Fingertip balance</span> <span class="dose">within holds</span><span class="cue">Tipping towards the fingers: press into the fingertips and knuckles. Tipping back: ease the fingers.</span><a class="howto" href="https://www.youtube.com/watch?v=oi0u_wumu90" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <h4>Strength</h4>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=paCOGgmLCA0" target="_blank" rel="noopener">&#9655; Watch: Pike push-up</a></p>
     <ul class="moves">
-      <li><span class="mv">Pike push-ups</span> <span class="dose">3&times;6&ndash;10</span><span class="cue">Raise the feet higher over time. Raise the hands on books if the wrists complain.</span></li>
-    </ul>
-    <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=IUZJoSP66HI" target="_blank" rel="noopener">&#9655; Watch: Tuck L-sit</a></p>
-    <ul class="moves">
-      <li><span class="mv">Tuck L-sit</span> <span class="dose">3&times;10&ndash;20s</span><span class="cue">On the floor or two books, knees tucked, lift the hips off the ground.</span></li>
+      <li><span class="mv">Pike push-ups</span> <span class="dose">3&times;6&ndash;10</span><span class="cue">Raise the feet higher over time. Raise the hands on books if the wrists complain.</span><a class="howto" href="https://www.youtube.com/watch?v=paCOGgmLCA0" target="_blank" rel="noopener">&#9655; Watch</a></li>
+      <li><span class="mv">Tuck L-sit</span> <span class="dose">3&times;10&ndash;20s</span><span class="cue">On the floor or two books, knees tucked, lift the hips off the ground.</span><a class="howto" href="https://www.youtube.com/watch?v=K-c1xXiUWJE" target="_blank" rel="noopener">&#9655; Watch</a></li>
     </ul>
     <div class="note good">
       <p class="t">Milestones</p>
@@ -439,41 +362,24 @@
   <details class="warm">
     <summary>Warm-up &middot; 5 min</summary>
     <div class="wbody">
-      <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">&#9655; Watch: Wrist prep</a></p>
       <ul class="moves">
-        <li><span class="mv">Forearm &amp; shoulder release</span> <span class="dose">30&ndash;60s</span><span class="cue">Free up the forearm flexors and shoulders.</span></li>
-        <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: palms-down rock forward, fingers-back rock, then side to side. Slow.</span></li>
-        <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly.</span></li>
-      </ul>
-      <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=6XSWhXMzDPU" target="_blank" rel="noopener">&#9655; Watch: Shoulder mobility</a></p>
-      <ul class="moves">
-        <li><span class="mv">Shoulder circles or wall slides</span> <span class="dose">~45s</span><span class="cue">Move the overhead reach through full range.</span></li>
-        <li><span class="mv">Band pass-throughs or thread-the-needle</span> <span class="dose">~45s</span><span class="cue">Open the shoulders towards overhead. No pinching.</span></li>
-        <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span></li>
-      </ul>
-      <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">&#9655; Watch: Hollow body</a></p>
-      <ul class="moves">
-        <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span></li>
+        <li><span class="mv">Wrist &amp; forearm stretch</span> <span class="dose">30&ndash;60s</span><span class="cue">Kneel, palms down and fingers pointing back, lean gently to stretch the forearm flexors.</span><a class="howto" href="https://www.youtube.com/watch?v=QiMiia4F7Xg" target="_blank" rel="noopener">&#9655; Watch</a></li>
+        <li><span class="mv">Wrist rocks, all directions</span> <span class="dose">3&times;10</span><span class="cue">On all fours: rock forward, back with fingers turned in, then side to side. Slow.</span><a class="howto" href="https://www.youtube.com/watch?v=O5vygZz5Q6U" target="_blank" rel="noopener">&#9655; Watch</a></li>
+        <li><span class="mv">Finger pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Press through the fingertips and lift the palm slightly, rhythmically.</span><a class="howto" href="https://www.youtube.com/watch?v=nM7wB89NlwE" target="_blank" rel="noopener">&#9655; Watch</a></li>
+        <li><span class="mv">Wall slides</span> <span class="dose">~45s</span><span class="cue">Back to a wall, slide the arms overhead and down, keeping contact.</span><a class="howto" href="https://www.youtube.com/watch?v=YIvNRUJp7_E" target="_blank" rel="noopener">&#9655; Watch</a></li>
+        <li><span class="mv">Band pass-throughs</span> <span class="dose">~45s</span><span class="cue">Hold a band wide, take it overhead and behind, and back. Widen the grip if the shoulders pinch.</span><a class="howto" href="https://www.youtube.com/watch?v=riVxa9By-pM" target="_blank" rel="noopener">&#9655; Watch</a></li>
+        <li><span class="mv">Scapular push-ups</span> <span class="dose">&times;8</span><span class="cue">In a plank, spread the shoulder blades, then squeeze.</span><a class="howto" href="https://www.youtube.com/watch?v=59BPdBnDjLY" target="_blank" rel="noopener">&#9655; Watch</a></li>
+        <li><span class="mv">Hollow hold</span> <span class="dose">2&times;10s</span><span class="cue">Tucked, lower back flat.</span><a class="howto" href="https://www.youtube.com/watch?v=MY6_stJuy7M" target="_blank" rel="noopener">&#9655; Watch</a></li>
       </ul>
     </div>
   </details>
-  <h4 style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:20px 0 4px;font-weight:700">Then</h4>
-  <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=YPas7rz2aN8" target="_blank" rel="noopener">&#9655; Watch: Hollow &amp; arch core</a></p>
+  <h4 style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px;font-weight:700">Then</h4>
   <ul class="moves">
-    <li><span class="mv">Arch / superman hold</span> <span class="dose">3&times;20&ndash;30s</span><span class="cue">Face down, lift the chest and legs. Builds the back.</span></li>
-  </ul>
-  <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=0M-erHBl48U" target="_blank" rel="noopener">&#9655; Watch: Side plank</a></p>
-  <ul class="moves">
-    <li><span class="mv">Side plank</span> <span class="dose">2&times;20&ndash;30s each</span><span class="cue">The side stability the hollow and arch miss.</span></li>
-  </ul>
-  <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=S89dl42KlE0" target="_blank" rel="noopener">&#9655; Watch: Wrist strength</a></p>
-  <ul class="moves">
-    <li><span class="mv">Wrist curls &amp; extensions</span> <span class="dose">2&times;15&ndash;20</span><span class="cue">Light band or dumbbell, palm-up then palm-down. Pain-free and high-rep.</span></li>
-    <li><span class="mv">Fingertip &amp; knuckle holds</span> <span class="dose">3&times;20s</span><span class="cue">On all fours, take some weight through spread fingertips. Builds the grip balancing needs.</span></li>
-  </ul>
-  <p class="bucket"><a class="howto" href="https://www.youtube.com/watch?v=Fl0UMfdEzsE" target="_blank" rel="noopener">&#9655; Watch: Inverted rows</a></p>
-  <ul class="moves">
-    <li><span class="mv">Inverted rows</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Under a bar or a sturdy table, body straight, pull your chest up to it. This is what builds your back. Skip if you have nothing to row under.</span></li>
+    <li><span class="mv">Arch / superman hold</span> <span class="dose">3&times;20&ndash;30s</span><span class="cue">Face down, lift the chest and legs. Builds the back.</span><a class="howto" href="https://www.youtube.com/watch?v=Z6k-dYzmfbA" target="_blank" rel="noopener">&#9655; Watch</a></li>
+    <li><span class="mv">Side plank</span> <span class="dose">2&times;20&ndash;30s each</span><span class="cue">The side stability the hollow and arch miss.</span><a class="howto" href="https://www.youtube.com/watch?v=iNbH7_edNI8" target="_blank" rel="noopener">&#9655; Watch</a></li>
+    <li><span class="mv">Wrist curls &amp; extensions</span> <span class="dose">2&times;15&ndash;20</span><span class="cue">Light band or dumbbell, palm-up then palm-down. Pain-free and high-rep.</span><a class="howto" href="https://www.youtube.com/watch?v=0T5V7FZQb-w" target="_blank" rel="noopener">&#9655; Watch</a></li>
+    <li><span class="mv">Fingertip plank hold</span> <span class="dose">3&times;20s</span><span class="cue">In a plank or on all fours, take weight through spread fingertips and hold. Builds the grip balancing needs.</span><a class="howto" href="https://www.youtube.com/watch?v=tActwQQ1t0k" target="_blank" rel="noopener">&#9655; Watch</a></li>
+    <li><span class="mv">Inverted rows</span> <span class="dose">3&times;8&ndash;12</span><span class="cue">Under a bar or a sturdy table, body straight, pull your chest up to it. This is what builds your back. Skip if you have nothing to row under.</span><a class="howto" href="https://www.youtube.com/watch?v=GdyhjXlxE-U" target="_blank" rel="noopener">&#9655; Watch</a></li>
   </ul>
 </div>
 
