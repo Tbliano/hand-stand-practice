@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handstand Programme</title>
+<style>
+  :root{
+    --bg:#faf7f2; --surface:#ffffff; --surface-2:#f4efe7;
+    --ink:#2b2724; --muted:#6f665c; --faint:#a49a8d;
+    --line:#e7e0d5; --accent:#b8563a; --accent-ink:#8f3f28;
+    --good:#3f7d54; --good-bg:#eef5ef; --good-line:#cfe3d4;
+    --warn:#b8563a; --warn-bg:#fbeee9; --warn-line:#f0d4c8;
+    --light:#a8763f; --light-bg:#f8f1e4; --light-line:#ecdcc2;
+    --radius:14px; --shadow:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(60,44,30,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#15120e; --surface:#201b15; --surface-2:#2a241c;
+      --ink:#ece6dc; --muted:#a89e90; --faint:#7c7264;
+      --line:#352d23; --accent:#e08a63; --accent-ink:#f0a984;
+      --good:#7cc092; --good-bg:#1a251c; --good-line:#2c3d30;
+      --warn:#e79178; --warn-bg:#2a1d17; --warn-line:#43291e;
+      --light:#d9ad6f; --light-bg:#26200f; --light-line:#3d3417;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.62; font-size:17px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 20px 96px}
+  header.top{padding:52px 0 8px}
+  .kicker{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 10px}
+  h1{font-size:33px; line-height:1.12; margin:0 0 12px; letter-spacing:-.02em}
+  .lede{font-size:18px; color:var(--muted); margin:0 0 8px; max-width:60ch}
+  h2{font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); font-weight:700; margin:48px 0 14px}
+  h3{font-size:20px; margin:0 0 6px; letter-spacing:-.01em}
+  p{margin:0 0 14px}
+  a{color:var(--accent-ink); text-decoration:none; border-bottom:1px solid var(--accent-line,rgba(184,86,58,.35))}
+  a:hover{border-bottom-color:currentColor}
+  small,.small{font-size:13.5px; color:var(--muted)}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+  .pad{padding:20px 22px}
+
+  /* intro meta chips */
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px}
+  .chip{font-size:13px; background:var(--surface-2); border:1px solid var(--line); color:var(--muted); padding:5px 11px; border-radius:999px}
+  .chip b{color:var(--ink); font-weight:600}
+
+  /* callout blocks */
+  .note{border-radius:var(--radius); padding:16px 18px; margin:18px 0; border:1px solid var(--line); background:var(--surface)}
+  .note .t{font-weight:700; font-size:14px; letter-spacing:.02em; margin:0 0 6px; display:flex; align-items:center; gap:8px}
+  .note p:last-child{margin-bottom:0}
+  .note.warn{background:var(--warn-bg); border-color:var(--warn-line)}
+  .note.warn .t{color:var(--warn)}
+  .note.good{background:var(--good-bg); border-color:var(--good-line)}
+  .note.good .t{color:var(--good)}
+  .note.light{background:var(--light-bg); border-color:var(--light-line)}
+  .note.light .t{color:var(--light)}
+
+  /* weekly table */
+  table{width:100%; border-collapse:collapse; font-size:15px; margin:6px 0 4px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); font-weight:700}
+  td.day{font-weight:600; white-space:nowrap}
+  .tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.03em; padding:2px 8px; border-radius:999px; vertical-align:middle}
+  .tag.skill{background:var(--good-bg); color:var(--good); border:1px solid var(--good-line)}
+  .tag.lite{background:var(--light-bg); color:var(--light); border:1px solid var(--light-line)}
+  .tag.rest{background:var(--surface-2); color:var(--muted); border:1px solid var(--line)}
+
+  /* phases */
+  details.phase{margin:14px 0; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+  details.phase>summary{list-style:none; cursor:pointer; padding:18px 20px; display:flex; align-items:flex-start; gap:14px}
+  details.phase>summary::-webkit-details-marker{display:none}
+  .pnum{flex:0 0 auto; width:38px; height:38px; border-radius:10px; background:var(--surface-2); border:1px solid var(--line); color:var(--accent); font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; margin-top:2px}
+  .phead{flex:1 1 auto; min-width:0}
+  .phead .h{display:block; font-size:19px; font-weight:700; letter-spacing:-.01em}
+  .phead .s{display:block; font-size:14px; color:var(--muted); margin-top:2px}
+  .chev{flex:0 0 auto; color:var(--faint); transition:transform .2s ease; margin-top:8px}
+  details.phase[open] .chev{transform:rotate(90deg)}
+  .pbody{padding:2px 20px 22px; border-top:1px solid var(--line)}
+  .pbody h4{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin:22px 0 8px}
+
+  ul.moves{list-style:none; padding:0; margin:0}
+  ul.moves>li{padding:12px 0; border-bottom:1px solid var(--line)}
+  ul.moves>li:last-child{border-bottom:none}
+  ul.moves .mv{font-weight:650}
+  ul.moves .dose{color:var(--accent-ink); font-weight:600; font-size:14px}
+  ul.moves .cue{display:block; color:var(--muted); font-size:14.5px; margin-top:2px}
+
+  /* checklist */
+  .check{display:flex; gap:11px; align-items:flex-start; padding:9px 0}
+  .check input{margin-top:4px; width:18px; height:18px; accent-color:var(--good); flex:0 0 auto}
+  .check label{font-size:15.5px}
+  .check .why{display:block; color:var(--muted); font-size:13.5px}
+
+  /* video */
+  .vid{margin:14px 0 4px}
+  .vid .frame{position:relative; padding-top:56.25%; border-radius:12px; overflow:hidden; border:1px solid var(--line); background:#000}
+  .vid.short .frame{padding-top:120%; max-width:340px}
+  .vid iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+  .vcap{font-size:13px; color:var(--muted); margin:8px 2px 0}
+  .vcap b{color:var(--ink)}
+
+  /* diagrams */
+  figure.dia{margin:16px 0; background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px}
+  figure.dia svg{width:100%; height:auto; display:block; color:var(--ink)}
+  figcaption{font-size:13.5px; color:var(--muted); margin-top:10px}
+
+  hr.sep{border:none; border-top:1px solid var(--line); margin:40px 0}
+  .foot{margin-top:44px; font-size:13.5px; color:var(--faint)}
+  .btnrow{margin:14px 0}
+  button.reset{font:inherit; font-size:14px; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:8px 14px; cursor:pointer}
+  button.reset:hover{border-color:var(--accent); color:var(--accent)}
+  .saved{font-size:13px; color:var(--good); margin-left:10px; opacity:0; transition:opacity .2s}
+  .saved.show{opacity:1}
+  ul.plain{padding-left:20px} ul.plain li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">A build-towards-it programme</p>
+  <h1>The Handstand Project</h1>
+  <p class="lede">A progressive, under-20-minutes routine that treats the handstand not as a trick to rush, but as the reason to build your wrists, shoulders, core and back. Six short mornings a week, over months, with a clear test before you move up.</p>
+  <div class="chips">
+    <span class="chip"><b>6 mornings</b> + 1 rest</span>
+    <span class="chip"><b>≤ 20 min</b> a day</span>
+    <span class="chip">4 phases, self-paced</span>
+    <span class="chip">Wrist-first</span>
+  </div>
+</header>
+
+<div class="note light">
+  <p class="t">Read this once before you start</p>
+  <p>This page is yours. Each morning, open the <b>one phase you are on</b>, do the warm-up plus that phase's work, and close it. Do not skip ahead. You move up only when you can tick every box in that phase's <b>Ready when&hellip;</b> test, honestly. The ticks save on this device, so your progress is here when you come back.</p>
+  <p style="margin-top:10px">Progress is measured in months, not weeks, and that is the point. A clean wall line comes in a few weeks; a reliable freestanding hold is a 6 to 12 month arc. You are using that arc to build the body you need anyway.</p>
+</div>
+
+<h2>Built around you</h2>
+<div class="card pad">
+  <p style="margin-top:0"><b>Your wrists set the pace.</b> You have flagged them as your weak link and you load them all day as a bodyworker. So this programme is wrist-first: every session warms them thoroughly, load is added slowly, and two of your six days are deliberately <b>light</b> (mobility and shape, almost no wrist loading). Put those light days the morning before your heaviest client days. A practice that eats into your work has failed, not succeeded.</p>
+  <p><b>What you already have going for you:</b> you are comfortable being upside down, so you skip the fear that stalls most beginners. And your body awareness from bodywork is half of balancing. Use it: feel where your weight sits in your hands.</p>
+  <p style="margin-bottom:0"><b>A bodyworker's bonus.</b> You know how to release a forearm. Fold 30 to 60 seconds of your own wrist-flexor and forearm release into the warm-up and again after, especially in the early weeks. It is prep and recovery you are already expert at.</p>
+</div>
+
+<h2>The global guardrails</h2>
+<p class="small" style="margin-top:-4px">These apply in every phase. When in doubt, come down. Junk reps build junk patterns.</p>
+
+<div class="note warn">
+  <p class="t">Wrists — sharp or joint pain</p>
+  <p>A muscular ache or stretch in the forearm is fine. <b>Sharp pain, or pain in the wrist joint itself, is a stop.</b> Come out, return to warm-up and prep-only loading, and reduce volume next session. If wrist soreness follows you into your work day, you did too much: cut the loaded work, do the light-day version, warm up longer.</p>
+</div>
+<div class="note warn">
+  <p class="t">Neck or arms — tingling, or pressure in the neck</p>
+  <p>You should feel this in your <b>hands and shoulders</b>, never a compressed neck or pins-and-needles down the arms. If you do, come down. It usually means weight is dumping into the wrong place or the shoulders are not pushing tall.</p>
+</div>
+<div class="note warn">
+  <p class="t">Shoulders — a pinch at the top of the reach</p>
+  <p>If reaching fully overhead pinches, do not force it. Reduce the range, spend more of the session on shoulder mobility, and let the range open over weeks. This is common when returning from a break.</p>
+</div>
+<div class="note warn">
+  <p class="t">Head rush or dizziness</p>
+  <p>Come out of every inversion <b>slowly</b>. If you feel light-headed on standing up, sit for a moment and hydrate. Never bolt upright out of a hold.</p>
+</div>
+<div class="note warn">
+  <p class="t">A pinch in the lower back upside down</p>
+  <p>That is the "banana": you are arching, not stacking. Ribs down, squeeze the glutes, think hollow. If it persists, you need more Phase 0 core, so drop back and build it. See the diagram below for the shape you are chasing.</p>
+</div>
+<div class="note warn">
+  <p class="t">The moment of panic when you tip over</p>
+  <p><b>Never kick up freestanding until you own your bail.</b> That is the entire job of Phase 2. When you over-balance, you turn and cartwheel out to the side. Learn it first, drill it until it is automatic, and the fear never gets to build.</p>
+</div>
+
+<h2>Your week</h2>
+<p class="small" style="margin-top:-4px">The same shape every week, whichever phase you are in. Every day opens with the warm-up. Place the two <span class="tag lite">light</span> days before your heaviest bodywork days.</p>
+<div class="card pad" style="padding-top:6px;padding-bottom:6px">
+<table>
+  <tr><th>Day</th><th>Focus</th><th>What it is</th></tr>
+  <tr><td class="day">Mon</td><td><span class="tag skill">skill</span></td><td>Warm-up + full phase work</td></tr>
+  <tr><td class="day">Tue</td><td><span class="tag lite">light</span></td><td>Warm-up + mobility and shape only, minimal wrist load</td></tr>
+  <tr><td class="day">Wed</td><td><span class="tag skill">skill</span></td><td>Warm-up + full phase work</td></tr>
+  <tr><td class="day">Thu</td><td><span class="tag lite">light</span></td><td>Warm-up + mobility and shape only, minimal wrist load</td></tr>
+  <tr><td class="day">Fri</td><td><span class="tag skill">skill</span></td><td>Warm-up + full phase work</td></tr>
+  <tr><td class="day">Sat</td><td><span class="tag skill">skill</span></td><td>Warm-up + full phase work</td></tr>
+  <tr><td class="day">Sun</td><td><span class="tag rest">rest</span></td><td>Off. Optional gentle wrist mobility only.</td></tr>
+</table>
+</div>
+<p class="small">On a <b>light</b> day: do the warm-up, the hollow-body / shape work, and the shoulder mobility, but skip the heaviest wrist-loaded item of your current phase (the wall holds, kick-ups or freestanding attempts). Keep the skill days for the loaded work.</p>
+
+<h2>The warm-up — every session, about 4 minutes</h2>
+<p class="small" style="margin-top:-4px">Never load a cold wrist, and mornings you are coldest. This is not optional; it is the reason your wrists last.</p>
+<div class="card pad">
+  <ul class="moves">
+    <li><span class="mv">Forearm release</span> <span class="dose">30&ndash;60s</span><span class="cue">Your speciality. Work the forearm flexors and the base of the palm before anything loads them.</span></li>
+    <li><span class="mv">Palms-down rocks</span> <span class="dose">&times;10</span><span class="cue">On all fours, hands flat, fingers forward. Rock weight forward over the wrists and back. Slow.</span></li>
+    <li><span class="mv">Fingers-back rocks</span> <span class="dose">&times;10</span><span class="cue">Hands flat, fingers pointing toward your knees, palms down. Gently rock back to stretch the underside. Ease into range.</span></li>
+    <li><span class="mv">Side-to-side rocks</span> <span class="dose">&times;10</span><span class="cue">Hands flat and fixed, sway side to side over the wrists to open the lateral range.</span></li>
+    <li><span class="mv">Knuckle &amp; fingertip pulses</span> <span class="dose">&times;10&ndash;15</span><span class="cue">Push into the fingertips and lift the palm slightly, like the balance grip you will use later. Wakes up the hands.</span></li>
+    <li><span class="mv">Shoulder opener</span> <span class="dose">~45s</span><span class="cue">Wall slides, or arm circles, or thread-the-needle. Get the overhead reach moving.</span></li>
+    <li><span class="mv">Hollow activation</span> <span class="dose">2&times;10s</span><span class="cue">A quick tucked hollow hold to switch the core on before the main work.</span></li>
+  </ul>
+</div>
+
+<div class="vid">
+  <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/mSZWSQSSEjE" title="Wrist prep routine" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <p class="vcap"><b>Follow-along wrist prep</b> &middot; FitnessFAQs. A full guided version of the warm-up above. <a href="https://www.youtube.com/watch?v=mSZWSQSSEjE" target="_blank" rel="noopener">Open on YouTube</a></p>
+</div>
+
+<h2>The shape you are chasing</h2>
+<figure class="dia">
+<svg viewBox="0 0 520 240" role="img" aria-label="A stacked straight handstand line beside an arched banana handstand">
+  <!-- ground -->
+  <line x1="30" y1="210" x2="230" y2="210" stroke="currentColor" stroke-width="2" opacity=".35"/>
+  <line x1="290" y1="210" x2="490" y2="210" stroke="currentColor" stroke-width="2" opacity=".35"/>
+  <!-- plumb lines -->
+  <line x1="130" y1="30" x2="130" y2="210" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity=".4"/>
+  <line x1="390" y1="30" x2="390" y2="210" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity=".4"/>
+  <!-- GOOD figure: straight stacked -->
+  <g stroke="currentColor" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- hands -->
+    <line x1="118" y1="208" x2="142" y2="208" stroke-width="7"/>
+    <!-- arms to shoulders -->
+    <line x1="130" y1="208" x2="130" y2="176"/>
+    <!-- body straight up -->
+    <line x1="130" y1="176" x2="130" y2="70"/>
+    <!-- head -->
+    <circle cx="130" cy="188" r="9" fill="currentColor" stroke="none"/>
+    <!-- feet flick -->
+    <line x1="130" y1="70" x2="130" y2="52"/>
+  </g>
+  <text x="130" y="234" text-anchor="middle" font-size="13" fill="currentColor" opacity=".8">Stacked &mdash; aim here</text>
+  <!-- BAD figure: banana -->
+  <g stroke="var(--warn)" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="378" y1="208" x2="402" y2="208" stroke-width="7"/>
+    <line x1="390" y1="208" x2="390" y2="176"/>
+    <!-- arched body bowing right of plumb -->
+    <path d="M390 176 C 420 150, 424 100, 398 60"/>
+    <circle cx="390" cy="188" r="9" fill="var(--warn)" stroke="none"/>
+    <line x1="398" y1="60" x2="400" y2="44"/>
+  </g>
+  <text x="390" y="234" text-anchor="middle" font-size="13" fill="var(--warn)" opacity=".9">Banana &mdash; avoid</text>
+</svg>
+<figcaption>Wrists, shoulders, hips and ankles stack over one plumb line. The "banana" arches through the lower back and is what pinches. The fix is always the same: ribs down, glutes on, think hollow.</figcaption>
+</figure>
+
+<hr class="sep">
+
+<h2>The four phases</h2>
+<p style="margin-top:-4px; color:var(--muted)">Tap a phase to open it. Do only the phase you are on.</p>
+
+<!-- PHASE 0 -->
+<details class="phase" open>
+  <summary>
+    <span class="pnum">0</span>
+    <span class="phead"><span class="h">Foundations</span><span class="s">Wrists, line and core &middot; typically 2&ndash;4 weeks</span></span>
+    <span class="chev">&#9656;</span>
+  </summary>
+  <div class="pbody">
+    <p><b>Goal:</b> earn the right to be upside down. Build wrist tolerance, a flat overhead line, and a real hollow-body core, before any meaningful inversions. Nothing here is scary; it is the foundation everything else stands on.</p>
+
+    <h4>The work (skill days)</h4>
+    <ul class="moves">
+      <li><span class="mv">Loaded wrist rocks</span> <span class="dose">3&times;20s</span><span class="cue">The warm-up rocks, but now pause and hold at the end range under your bodyweight. Build the tissue tolerance. Stop at sharp pain.</span></li>
+      <li><span class="mv">Quadruped weight shift</span> <span class="dose">3&times;30s</span><span class="cue">On all fours, hands under shoulders, shift weight forward onto the hands and hold. This is the first real wrist load. Progress by leaning further over time.</span></li>
+      <li><span class="mv">Hollow-body hold</span> <span class="dose">4&times;20&ndash;30s</span><span class="cue">Lower back pressed flat to the floor. Start tucked (knees and arms in); extend the limbs only as far as you can keep the back flat. See the video.</span></li>
+      <li><span class="mv">Overhead wall reach</span> <span class="dose">3&times;20s</span><span class="cue">Back to a wall, arms reach overhead to touch it without the lower back arching off or elbows bending. This is your shoulder line.</span></li>
+      <li><span class="mv">Wall-walk intro (optional)</span> <span class="dose">3 reps</span><span class="cue">Feet on the wall, hands walk out to a plank, and back. A gentle taste of load through the shoulders. Only when the above feel easy.</span></li>
+    </ul>
+
+    <div class="vid">
+      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/HAfUt2Cco74" title="Hollow body hold progressions" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <p class="vcap"><b>Hollow-body progressions, beginner to advanced.</b> Start at the tucked version and only extend when the lower back stays flat. <a href="https://www.youtube.com/watch?v=HAfUt2Cco74" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+
+    <figure class="dia">
+    <svg viewBox="0 0 480 150" role="img" aria-label="Hollow body position lying on the floor">
+      <line x1="30" y1="118" x2="450" y2="118" stroke="currentColor" stroke-width="2" opacity=".35"/>
+      <g stroke="currentColor" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <!-- torso curved slightly, low back to floor -->
+        <path d="M150 96 Q 240 118 330 96"/>
+        <!-- arms overhead -->
+        <line x1="150" y1="96" x2="96" y2="70"/>
+        <!-- legs raised -->
+        <line x1="330" y1="96" x2="392" y2="70"/>
+        <!-- head -->
+        <circle cx="140" cy="92" r="9" fill="currentColor" stroke="none"/>
+      </g>
+      <!-- arrow to low back -->
+      <line x1="240" y1="150" x2="240" y2="122" stroke="var(--good)" stroke-width="2"/>
+      <text x="240" y="146" text-anchor="middle" font-size="12" fill="var(--good)">lower back pressed flat</text>
+    </svg>
+    <figcaption>Hollow body: the shape of a handstand, lying down. If the lower back lifts off the floor, bring the arms and legs in until it presses flat again.</figcaption>
+    </figure>
+
+    <div class="note good">
+      <p class="t">Ready when&hellip; (tick honestly to unlock Phase 1)</p>
+      <div class="check"><input type="checkbox" id="g0a"><label for="g0a">Hollow-body hold, 30&ndash;45s, lower back flat the whole time <span class="why">Your core can hold the shape before you invert it.</span></label></div>
+      <div class="check"><input type="checkbox" id="g0b"><label for="g0b">Quadruped weight-shift, 30s leaning well over the hands, no sharp wrist pain <span class="why">Wrists tolerate real load.</span></label></div>
+      <div class="check"><input type="checkbox" id="g0c"><label for="g0c">Overhead wall reach with a flat back and straight elbows <span class="why">Shoulders open enough to stack.</span></label></div>
+      <div class="check"><input type="checkbox" id="g0d"><label for="g0d">Wrists feel fine the next day, including on work days <span class="why">The load is sustainable alongside bodywork.</span></label></div>
+    </div>
+  </div>
+</details>
+
+<!-- PHASE 1 -->
+<details class="phase">
+  <summary>
+    <span class="pnum">1</span>
+    <span class="phead"><span class="h">Chest-to-wall</span><span class="s">The line, and the shape of everything &middot; 4&ndash;8+ weeks</span></span>
+    <span class="chev">&#9656;</span>
+  </summary>
+  <div class="pbody">
+    <p><b>Goal:</b> the single most valuable phase. Facing the wall forces the correct stacked, hollow line, because the wall will not let you arch away from it. This is where the strength and the shape are built. Do not rush past it, even when it feels repetitive.</p>
+
+    <h4>The work (skill days)</h4>
+    <ul class="moves">
+      <li><span class="mv">Wall walk to chest-to-wall</span> <span class="dose">3&ndash;5 reps</span><span class="cue">From a plank with feet at the base of the wall, walk hands in and feet up until your chest and hips are close to the wall and stacked over the hands.</span></li>
+      <li><span class="mv">Chest-to-wall hold</span> <span class="dose">build to 60s total</span><span class="cue">The main event. Push tall through the shoulders (ears "disappear" between the arms), ribs down, glutes on, squeeze everything long. Accumulate time in as many sets as it takes.</span></li>
+      <li><span class="mv">Shoulder shrugs in the hold</span> <span class="dose">2&times;5</span><span class="cue">In the chest-to-wall hold, shrug the shoulders up toward the ears and back down. Builds the active push you will balance on later.</span></li>
+      <li><span class="mv">One-foot taps (late in phase)</span> <span class="dose">3&times;3 each</span><span class="cue">In the hold, peel one foot off the wall a few centimetres, hold, replace. Your first taste of finding your own balance.</span></li>
+    </ul>
+
+    <div class="vid short">
+      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/u4LitSoIy4s" title="Chest to wall handstand" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <p class="vcap"><b>Chest-to-wall, the beginner progression.</b> Tom Merrick. The line to copy. <a href="https://www.youtube.com/watch?v=u4LitSoIy4s" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+    <div class="vid">
+      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/oJy6MJ-JLbw" title="20 minute beginner handstand routine" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <p class="vcap"><b>Optional 20-minute follow-along.</b> A full guided wall session for the days you would rather be led through it. <a href="https://www.youtube.com/watch?v=oJy6MJ-JLbw" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+
+    <div class="note warn">
+      <p class="t">Watch the shoulders here</p>
+      <p>The commonest fault is letting the shoulders sink so the head pokes forward. Cue: push the floor away, make yourself tall, hide your ears between your arms. If the shoulder reach is not there yet, spend more time on the Phase 0 overhead work.</p>
+    </div>
+
+    <div class="note good">
+      <p class="t">Ready when&hellip; (tick to unlock Phase 2)</p>
+      <div class="check"><input type="checkbox" id="g1a"><label for="g1a">Chest-to-wall hold, 60s, clean line (ribs in, glutes on, pushing tall) <span class="why">The endurance and shape are real, not a 5-second lunge into the wall.</span></label></div>
+      <div class="check"><input type="checkbox" id="g1b"><label for="g1b">Peel one foot off the wall and hold 5s, each side, without collapsing <span class="why">You can carry your own weight for a moment.</span></label></div>
+      <div class="check"><input type="checkbox" id="g1c"><label for="g1c">Accumulated hold time leaves the wrists fine the next day <span class="why">Volume is sustainable.</span></label></div>
+    </div>
+  </div>
+</details>
+
+<!-- PHASE 2 -->
+<details class="phase">
+  <summary>
+    <span class="pnum">2</span>
+    <span class="phead"><span class="h">Kick-up &amp; bail</span><span class="s">Getting in, and safely out &middot; 4&ndash;8+ weeks</span></span>
+    <span class="chev">&#9656;</span>
+  </summary>
+  <div class="pbody">
+    <p><b>Goal:</b> learn to enter a freestanding handstand and, first and most importantly, to exit one. You learn the bail <b>before</b> you chase balance. Own the exit and the fear never forms.</p>
+
+    <div class="note warn">
+      <p class="t">The bail comes first</p>
+      <p>Spend the first week or two of this phase on the cartwheel bail alone until it is automatic in both directions. Only then start the freestanding kick-ups. This order is the whole safety model.</p>
+    </div>
+
+    <h4>The work (skill days)</h4>
+    <ul class="moves">
+      <li><span class="mv">Cartwheel bail drill</span> <span class="dose">5 each side</span><span class="cue">From a kick-up, when you feel yourself tipping over, turn the shoulders and step one hand round to cartwheel out to the side, feet landing wide. Practise it deliberately, not just when you panic.</span></li>
+      <li><span class="mv">Back-to-wall kick-up</span> <span class="dose">5&ndash;8 reps</span><span class="cue">Lunge, hands down a hand-span from the wall, kick the back leg up and let the heels find the wall softly. Arrive gently; do not slam. This teaches the kick calibration.</span></li>
+      <li><span class="mv">Kick-up to balance (off wall)</span> <span class="dose">5&ndash;8 reps</span><span class="cue">In open space, kick up and try to catch a moment of stillness, bailing out the side the instant it drifts. Every attempt ends in a controlled exit, never a crash.</span></li>
+    </ul>
+
+    <div class="vid">
+      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/ZzEP7XvkDDk" title="How to bail out of a handstand" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <p class="vcap"><b>The cartwheel and pirouette bail.</b> Learn this before you kick up in open space. <a href="https://www.youtube.com/watch?v=ZzEP7XvkDDk" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+
+    <figure class="dia">
+    <svg viewBox="0 0 420 180" role="img" aria-label="The kick-up lunge starting position">
+      <line x1="20" y1="150" x2="400" y2="150" stroke="currentColor" stroke-width="2" opacity=".35"/>
+      <g stroke="currentColor" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <!-- hands planted -->
+        <line x1="70" y1="148" x2="94" y2="148" stroke-width="7"/>
+        <!-- front arm reaching to floor -->
+        <line x1="82" y1="148" x2="120" y2="96"/>
+        <!-- torso -->
+        <line x1="120" y1="96" x2="170" y2="70"/>
+        <!-- head -->
+        <circle cx="182" cy="66" r="9" fill="currentColor" stroke="none"/>
+        <!-- front (lead) leg bent, planted -->
+        <line x1="150" y1="86" x2="150" y2="150"/>
+        <!-- back leg extended, ready to swing up -->
+        <line x1="150" y1="86" x2="240" y2="120"/>
+      </g>
+      <!-- swing arrow -->
+      <path d="M250 120 Q 300 80 300 40" stroke="var(--accent)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+      <defs><marker id="ah" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--accent)"/></marker></defs>
+      <text x="300" y="30" text-anchor="middle" font-size="12" fill="var(--accent)">back leg swings up</text>
+    </svg>
+    <figcaption>The kick-up lunge: front knee bent and planted, arms already reaching to the floor, hips over the hands. The back leg swings up first and the front follows. Aim to float up, not to launch.</figcaption>
+    </figure>
+
+    <div class="note good">
+      <p class="t">Ready when&hellip; (tick to unlock Phase 3)</p>
+      <div class="check"><input type="checkbox" id="g2a"><label for="g2a">Cartwheel bail is automatic, both directions, no hesitation <span class="why">You are safe to be in free space upside down.</span></label></div>
+      <div class="check"><input type="checkbox" id="g2b"><label for="g2b">Back-to-wall kick-up arrives softly and consistently <span class="why">Your kick is calibrated, not a wild launch.</span></label></div>
+      <div class="check"><input type="checkbox" id="g2c"><label for="g2c">Off the wall, you catch 1&ndash;3s of balance and always bail cleanly <span class="why">You can find vertical and exit at will.</span></label></div>
+    </div>
+  </div>
+</details>
+
+<!-- PHASE 3 -->
+<details class="phase">
+  <summary>
+    <span class="pnum">3</span>
+    <span class="phead"><span class="h">Freestanding</span><span class="s">Turning the float into a hold &middot; ongoing, months</span></span>
+    <span class="chev">&#9656;</span>
+  </summary>
+  <div class="pbody">
+    <p><b>Goal:</b> extend that flash of balance into a hold, using the fingers and wrists to steer. There is no gate at the end of this phase, because this phase is the destination. It keeps giving for years.</p>
+
+    <h4>The work (skill days)</h4>
+    <ul class="moves">
+      <li><span class="mv">Toe pulls</span> <span class="dose">5&ndash;8 reps</span><span class="cue">From chest-to-wall with toes touching, push tall, ribs tucked, and lean the shoulders forward just enough to peel the toes off and float. The core skill of finding balance. See the video.</span></li>
+      <li><span class="mv">Fingertip balance drills</span> <span class="dose">within holds</span><span class="cue">Tipping forward (toward the fingers)? Press hard into the fingertips and the knuckles to push yourself back. Tipping back (toward the heels of the hand)? Ease the fingers. This is the steering wheel.</span></li>
+      <li><span class="mv">Freestanding kick-up to hold</span> <span class="dose">6&ndash;10 reps</span><span class="cue">Kick up and stay, steering with the hands, bailing the instant it runs away. Quality over quantity; stop when the shape falls apart.</span></li>
+      <li><span class="mv">Heel-pull drill</span> <span class="dose">3&ndash;5 reps</span><span class="cue">For over-balance: from chest-to-wall, pull the heels off and down toward the floor behind you, learning to arrest a forward tip.</span></li>
+    </ul>
+
+    <div class="vid short">
+      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/A3JLPWyT14M" title="Toe pulls for handstand balance" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <p class="vcap"><b>Toe pulls, two variations.</b> The bridge from wall to freestanding. <a href="https://www.youtube.com/watch?v=A3JLPWyT14M" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+    <div class="vid">
+      <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/6DPl4QlAY4k" title="How to balance a freestanding handstand" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <p class="vcap"><b>Finding balance freestanding.</b> How the hands do the steering. <a href="https://www.youtube.com/watch?v=6DPl4QlAY4k" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+
+    <div class="note good">
+      <p class="t">Milestones (celebrate these, no need to "pass")</p>
+      <div class="check"><input type="checkbox" id="g3a"><label for="g3a">First 5-second freestanding hold</label></div>
+      <div class="check"><input type="checkbox" id="g3b"><label for="g3b">10-second hold</label></div>
+      <div class="check"><input type="checkbox" id="g3c"><label for="g3c">Kick up to balance on demand, most attempts</label></div>
+      <div class="check"><input type="checkbox" id="g3d"><label for="g3d">30-second hold &mdash; a genuinely strong handstand</label></div>
+    </div>
+
+    <div class="note light">
+      <p class="t">Where to go from here</p>
+      <p>Once a 30-second hold is reliable, you have arrived, and you have also built exactly the wrists, shoulders, core and back you set out to build. Natural next steps in calisthenics: the handstand press (from a pike or straddle), the tuck planche, the L-sit, and shoulder-taps in the handstand. Same principles: warm the wrists, build slowly, own the bail.</p>
+    </div>
+  </div>
+</details>
+
+<hr class="sep">
+
+<div class="btnrow">
+  <button class="reset" id="resetBtn">Reset all ticks</button>
+  <span class="saved" id="savedMsg">progress saved</span>
+</div>
+
+<div class="foot">
+  <p><b>A note on the videos.</b> They are other people's tutorials, embedded for convenience and set to privacy mode. If one ever goes dark, the title and channel are named so you can search it again.</p>
+  <p><b>This is guidance, not a medical opinion.</b> You know your own body and, professionally, plenty about other people's. If a joint hurts in a way that is not the honest ache of new work, back off and, if it lingers, get it looked at.</p>
+  <p>Built to grow with you. When you clear a phase or want to tweak a dose, it is one file to change.</p>
+</div>
+
+</div>
+
+<script>
+  // Persist every checkbox to localStorage by id.
+  (function(){
+    var KEY = 'handstand-progress-v1';
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ saved = {}; }
+    var boxes = document.querySelectorAll('input[type="checkbox"]');
+    boxes.forEach(function(b){
+      if (saved[b.id]) b.checked = true;
+      b.addEventListener('change', function(){
+        saved[b.id] = b.checked;
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){}
+        flash();
+      });
+    });
+    var msg = document.getElementById('savedMsg');
+    var t;
+    function flash(){
+      if(!msg) return;
+      msg.classList.add('show');
+      clearTimeout(t);
+      t = setTimeout(function(){ msg.classList.remove('show'); }, 1200);
+    }
+    var rb = document.getElementById('resetBtn');
+    if (rb) rb.addEventListener('click', function(){
+      if (!confirm('Clear every tick and start the tracker fresh?')) return;
+      saved = {};
+      try { localStorage.removeItem(KEY); } catch(e){}
+      boxes.forEach(function(b){ b.checked = false; });
+    });
+  })();
+</script>
+</body>
+</html>
