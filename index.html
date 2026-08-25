@@ -130,10 +130,15 @@
   details.ref .rbody .note{margin:14px 0}
 
   /* session log / streak tracker */
-  .tracker .tstats{display:flex; gap:10px; text-align:center; margin-bottom:14px}
-  .tracker .tstats>div{flex:1; background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:10px 6px}
-  .tracker .tstats b{display:block; font-size:22px; color:var(--accent); font-weight:800; line-height:1.1}
-  .tracker .tstats span{font-size:12px; color:var(--muted)}
+  .tracker .tstats{display:flex; gap:8px; text-align:center; margin-bottom:12px}
+  .tracker .tstats>div{flex:1; background:var(--surface-2); border:1px solid var(--line); border-radius:10px; padding:7px 6px}
+  .tracker .tstats b{display:block; font-size:19px; color:var(--accent); font-weight:800; line-height:1.1}
+  .tracker .tstats span{font-size:11.5px; color:var(--muted)}
+  .loghist{margin-top:13px}
+  .loghist>summary{list-style:none; cursor:pointer; font-size:13px; font-weight:700; color:var(--accent); display:inline-flex; align-items:center; gap:6px}
+  .loghist>summary::-webkit-details-marker{display:none}
+  .loghist>summary::after{content:"\25B8"; color:var(--faint); font-size:11px; transition:transform .2s ease}
+  .loghist[open]>summary::after{transform:rotate(90deg)}
   .tbtn{width:100%; font:inherit; font-weight:700; font-size:15px; color:var(--bg); background:var(--accent); border:1px solid var(--accent); border-radius:12px; padding:12px; cursor:pointer}
   .tbtn.done{background:var(--surface); color:var(--accent)}
   .tgrid{display:flex; flex-direction:column; gap:4px; margin-top:16px}
@@ -179,8 +184,11 @@
     <div><b id="tTotal">0</b><span>total sessions</span></div>
   </div>
   <button id="tToday" class="tbtn">Mark today done</button>
-  <div id="tGrid" class="tgrid" aria-hidden="true"></div>
-  <p class="small" style="margin:12px 0 0">Each square is a day over the last 12 weeks; filled means you showed up. A rest day will not break your streak, missing two in a row will.</p>
+  <details class="loghist">
+    <summary>12-week history</summary>
+    <div id="tGrid" class="tgrid" aria-hidden="true"></div>
+    <p class="small" style="margin:10px 0 0">Each square is a day; filled means you showed up. A rest day will not break your streak, missing two in a row will.</p>
+  </details>
 </div>
 
 <h2>The week</h2>
