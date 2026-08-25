@@ -129,6 +129,19 @@
   details.ref .rbody{padding:6px 20px 20px; border-top:1px solid var(--line)}
   details.ref .rbody .note{margin:14px 0}
 
+  /* session log / streak tracker */
+  .tracker .tstats{display:flex; gap:10px; text-align:center; margin-bottom:14px}
+  .tracker .tstats>div{flex:1; background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:10px 6px}
+  .tracker .tstats b{display:block; font-size:22px; color:var(--accent); font-weight:800; line-height:1.1}
+  .tracker .tstats span{font-size:12px; color:var(--muted)}
+  .tbtn{width:100%; font:inherit; font-weight:700; font-size:15px; color:var(--bg); background:var(--accent); border:1px solid var(--accent); border-radius:12px; padding:12px; cursor:pointer}
+  .tbtn.done{background:var(--surface); color:var(--accent)}
+  .tgrid{display:flex; flex-direction:column; gap:4px; margin-top:16px}
+  .tgrid .wk{display:flex; gap:5px; justify-content:center}
+  .tgrid .cell{flex:1 1 0; aspect-ratio:1; max-width:30px; border-radius:4px; background:var(--surface-2); border:1px solid var(--line)}
+  .tgrid .cell.on{background:var(--accent); border-color:var(--accent)}
+  .tgrid .cell.today{outline:2px solid var(--accent-ink); outline-offset:1px}
+  .tgrid .cell.future{opacity:.3}
   hr.sep{border:none; border-top:1px solid var(--line); margin:40px 0}
   .foot{margin-top:44px; font-size:13.5px; color:var(--faint)}
   .btnrow{margin:14px 0}
@@ -157,6 +170,18 @@
   </div>
   <p class="small" style="margin-top:14px">Each session is about 15 minutes: warm-up, your current phase's skill work, then a short wrist finisher. This is a skill and wrist programme; your strength training stays separate (see the note under the week). Each exercise has its own <b>&#9655; Watch</b> demo. Advance a phase only when you pass its test. Ticks save on this device.</p>
 </header>
+
+<h2>Your log</h2>
+<div class="card pad tracker">
+  <div class="tstats">
+    <div><b id="tStreak">0</b><span>day streak</span></div>
+    <div><b id="tWeek">0/6</b><span>this week</span></div>
+    <div><b id="tTotal">0</b><span>total sessions</span></div>
+  </div>
+  <button id="tToday" class="tbtn">Mark today done</button>
+  <div id="tGrid" class="tgrid" aria-hidden="true"></div>
+  <p class="small" style="margin:12px 0 0">Each square is a day over the last 12 weeks; filled means you showed up. A rest day will not break your streak, missing two in a row will.</p>
+</div>
 
 <h2>The week</h2>
 <div class="card pad" style="padding-top:6px;padding-bottom:6px">
@@ -479,6 +504,75 @@
         a.textContent = '▷ Close';
       });
     });
+
+    // --- Session log / streak tracker ---
+    var LOGKEY = 'handstand-log-v1';
+    var logArr;
+    try { logArr = JSON.parse(localStorage.getItem(LOGKEY) || '[]'); } catch(e){ logArr = []; }
+    var logSet = new Set(logArr);
+    function iso(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+    function today0(){ var d = new Date(); d.setHours(0,0,0,0); return d; }
+    function mondayOf(d){ var x = new Date(d); var wd = (x.getDay()+6)%7; x.setDate(x.getDate()-wd); x.setHours(0,0,0,0); return x; }
+    function saveLog(){ try { localStorage.setItem(LOGKEY, JSON.stringify(Array.from(logSet))); } catch(e){} }
+
+    var elStreak = document.getElementById('tStreak');
+    var elWeek = document.getElementById('tWeek');
+    var elTotal = document.getElementById('tTotal');
+    var elBtn = document.getElementById('tToday');
+    var elGrid = document.getElementById('tGrid');
+    var ONE_DAY = 86400000;
+
+    function computeStreak(){
+      var cur = today0();
+      if (!logSet.has(iso(cur))) { cur = new Date(cur.getTime()-ONE_DAY); if (!logSet.has(iso(cur))) return 0; }
+      var count = 0, gaps = 0, day = new Date(cur), guard = 0;
+      while (guard++ < 500){
+        if (logSet.has(iso(day))) { count++; gaps = 0; }
+        else { gaps++; if (gaps > 1) break; }
+        day = new Date(day.getTime()-ONE_DAY);
+      }
+      return count;
+    }
+    function weekCount(){
+      var m = mondayOf(today0()), c = 0;
+      for (var i=0;i<7;i++){ var d = new Date(m); d.setDate(m.getDate()+i); if (logSet.has(iso(d))) c++; }
+      return c;
+    }
+    function renderGrid(){
+      if (!elGrid) return;
+      elGrid.innerHTML = '';
+      var weeks = 12, t = today0(), start = mondayOf(t);
+      start.setDate(start.getDate() - (weeks-1)*7);
+      for (var w=0; w<weeks; w++){
+        var row = document.createElement('div'); row.className = 'wk';
+        for (var i=0;i<7;i++){
+          var d = new Date(start); d.setDate(start.getDate() + w*7 + i);
+          var cell = document.createElement('div'); cell.className = 'cell';
+          if (logSet.has(iso(d))) cell.className += ' on';
+          if (iso(d) === iso(t)) cell.className += ' today';
+          if (d > t) cell.className += ' future';
+          cell.title = iso(d);
+          row.appendChild(cell);
+        }
+        elGrid.appendChild(row);
+      }
+    }
+    function refreshLog(){
+      if (elStreak) elStreak.textContent = computeStreak();
+      if (elWeek) elWeek.textContent = weekCount() + '/6';
+      if (elTotal) elTotal.textContent = logSet.size;
+      var done = logSet.has(iso(today0()));
+      if (elBtn){ elBtn.textContent = done ? '✓ Done today — tap to undo' : 'Mark today done'; elBtn.className = 'tbtn' + (done ? ' done' : ''); }
+      renderGrid();
+    }
+    if (elBtn){
+      elBtn.addEventListener('click', function(){
+        var k = iso(today0());
+        if (logSet.has(k)) logSet.delete(k); else logSet.add(k);
+        saveLog(); refreshLog();
+      });
+      refreshLog();
+    }
   })();
 </script>
 </body>
