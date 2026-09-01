@@ -149,6 +149,8 @@
   .tgrid .cell.on{background:var(--accent); border-color:var(--accent)}
   .tgrid .cell.today{outline:2px solid var(--accent-ink); outline-offset:1px}
   .tgrid .cell.future{opacity:.3}
+  .tgrid .cell:not(.future){cursor:pointer}
+  .tgrid .cell:not(.future):hover{border-color:var(--accent)}
   hr.sep{border:none; border-top:1px solid var(--line); margin:40px 0}
   .foot{margin-top:44px; font-size:13.5px; color:var(--faint)}
   .btnrow{margin:14px 0}
@@ -189,7 +191,7 @@
   <details class="loghist">
     <summary>12-week history</summary>
     <div id="tGrid" class="tgrid" aria-hidden="true"></div>
-    <p class="small" style="margin:10px 0 0">Each square is a day; filled means you showed up. A rest day will not break your streak, missing two in a row will.</p>
+    <p class="small" style="margin:10px 0 0">Each square is a day; tap one to fill it in (or clear it) if you forgot the button. A rest day will not break your streak, missing two in a row will.</p>
   </details>
   <div class="tbackup">
     <button id="tBackup" class="tlink">Copy backup code</button>
@@ -516,7 +518,7 @@
           if (logSet.has(iso(d))) cell.className += ' on';
           if (iso(d) === iso(t)) cell.className += ' today';
           if (d > t) cell.className += ' future';
-          cell.title = iso(d);
+          cell.title = iso(d); cell.dataset.date = iso(d);
           row.appendChild(cell);
         }
         elGrid.appendChild(row);
@@ -538,6 +540,15 @@
       });
       refreshLog();
     }
+
+    // Tap a past day in the grid to mark it (or unmark), for when you forget the button.
+    if (elGrid) elGrid.addEventListener('click', function(e){
+      var cell = e.target.closest ? e.target.closest('.cell') : null;
+      if (!cell || cell.classList.contains('future')) return;
+      var k = cell.dataset.date; if (!k) return;
+      if (logSet.has(k)) logSet.delete(k); else logSet.add(k);
+      saveLog(); refreshLog();
+    });
 
     // --- Backup / restore (survives clearing browser data; also moves between devices) ---
     function makeBackup(){
